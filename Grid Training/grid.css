@@ -1,0 +1,70 @@
+.nav {
+    border: 3px solid black;
+    display: grid;
+    width: 500px;
+    height: 50px;
+    justify-content: center;
+    align-content: center;
+}
+
+.nav .menu {
+    justify-content: space-between;
+    
+}
+
+.nav .menu a {
+    margin-left: 5px;
+    
+}
+
+.container {
+    border: 3px solid black;
+    margin-top: 15px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    /*with width: 100% and grid-template-columns, 
+    you have something responsive*/
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+.item-A {
+    margin: 5px;
+    border: 2px solid yellow;
+}
+
+.item-B {
+    margin: 5px;
+    border: 2px solid pink;
+}
+
+.item-C {
+    margin: 5px;
+    border: 2px solid green;
+    grid-row-start: 1;
+    grid-column-start: 3;
+    grid-row-end: 3;
+    grid-column-end: 3;
+}
+
+.item-D {
+    margin: 5px;
+    border: 2px solid pink;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.item-E {
+    margin: 5px;
+    border: 2px solid green;
+    
+}
+
+.item-F {
+    margin: 5px;
+    border: 2px solid yellow;
+    grid-column-start:2;
+    grid-column-end: 4;
+}

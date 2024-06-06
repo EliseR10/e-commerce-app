@@ -1,0 +1,156 @@
+body {
+    font-family: Lora;
+    margin: 10px;
+}
+
+.logo {
+    display: flex;
+    float: left;
+    width: 20%;
+    padding-bottom: 20px;
+}
+
+.logo img{
+    width: 50%;
+    
+}
+
+.nav {
+    display: flex;
+    justify-content: right;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    
+}
+
+span {
+    color: lightsalmon;
+}
+
+.nav .menu a:hover, .nav .menu a span:hover {
+    text-decoration: underline;
+}
+
+.presentation {
+    display: inline-block;
+    width: 100%;
+}
+
+/*To wrap text around the image*/
+.image {
+    float: right;
+    margin-left: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.text {
+    text-align: justify;
+    padding-right: 10px;
+}
+
+.special-event {
+    text-align: center;
+    background-color: lightsalmon;
+
+}
+
+footer {
+    text-align: center;
+    line-height: 15px;
+    background-color:lightgrey;
+    padding: 5px 5px;
+}
+
+
+/*Apply the style for hamburger label - desktop*/
+label {
+    margin: 0 40px 0 0;
+    font-size: 26px;
+    line-height: 70px;
+    display: none;
+}
+
+/*Make the check-box disappear*/
+#toggle {
+    display: none;
+}
+
+/*MEDIA QUERIES*/
+
+/*PHONE*/
+@media only screen and (max-width: 640px) {
+    .logo {
+        width: 30%;
+    }
+
+    .logo img {
+        width: 50%;
+    }
+    
+    label {
+        display: block;
+        cursor: pointer;
+        right: 15px;
+        position: absolute;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .menu {
+        text-align: center;
+        width: 100%;
+        display: none;
+    }
+
+    .menu a {
+        display: block;
+        margin: 0;
+        margin-right: 15px;
+        margin-left: 5px;
+    }
+
+    #toggle:checked + .menu {
+        display: block;
+    }
+
+    .presentation .image {
+        margin-right: 40px;
+    }
+
+    .text {
+        text-align: center;
+    }
+}
+
+/*DESKTOP*/
+@media only screen and (min-width: 992px) {
+    .logo {
+        width: 20%;
+    }
+
+    .logo img {
+        width: 30%;
+    }
+
+    .nav {
+        justify-content: center;
+    }
+
+    .nav a {
+        padding: 20px;
+    }
+
+    .text {
+        margin-top: 40px;
+        
+    }
+}

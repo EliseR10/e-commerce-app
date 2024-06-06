@@ -1,0 +1,52 @@
+table{
+    font-family: Ubuntu, 'Trebuchet MS';
+    border-top: 1px solid darkgreen;
+    border-bottom: 1px solid darkgreen;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    max-width: 1000px;
+    min-width: 600px;
+    background-color: #3C4062;
+}
+
+.id{
+    border-radius: 50%;
+    padding-right: 15px;
+}
+
+.name{
+    font-size: 25px;
+    padding-right: 25px;
+    color: white;
+}
+
+.role{
+    font-size: 20px;
+    padding-right: 25px;
+    color: white;
+}
+
+#email{
+    font-size: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+#phone{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-size: 15px;
+    color: white;
+}
+
+#facebook{
+    margin-right: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    color: white;
+}

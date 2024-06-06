@@ -1,0 +1,105 @@
+/*This is the settings for desktop users*/
+
+.nav {
+    border-bottom: 1px solid #EAEAEB;
+    text-align: right;
+    float: right;
+    height: 70px;
+    line-height: 70px;
+    font-family: Arial;
+}
+
+.menu {
+    margin: 0 30px 0 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+    line-height: 70px;
+}
+
+span {
+    color: #DFE33E;
+    font-weight: bold;
+}
+
+/*Apply a style on the hamburger label*/
+label {
+    margin: 0 40px 0 0;
+    font-size: 26px;
+    line-height: 70px;
+    display: none;
+}
+
+/*Makes the check-box disappear*/
+#toggle {
+    display: none;
+}
+
+#background {
+    background-image: url("https://onedrive.live.com/embed?resid=3B321C3E3EB27E40%212444&authkey=!AAVV_xwCCfz5RLM");
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    font-size: 5vw;
+    text-align: justify;
+}
+
+#title {
+    text-align: center;
+}
+
+#prices {
+    width: 50%;
+    height: auto;
+    margin: auto;
+}
+
+/*Apply rules for phone*/
+@media only screen and (max-width: 500px){
+    label {
+        display: block;
+        cursor: pointer; /*This brings the pointy hand to click on link*/
+        right: 15px;
+        position: absolute;
+        margin-right: 20px;
+        margin-left: 10px;
+        z-index: 1;
+    }
+
+    .menu {
+        text-align: center;
+        width: 100%;
+        display: none; /*this is for it not to appear until you click on it*/
+        background-color: #E8E8DC;
+        z-index: 0;
+    }
+
+    .menu a {
+        display: block;
+        margin: 0;
+        margin-right: 15px;
+        margin-left:5px;
+        border-bottom: 2px solid #E2E3DA;
+        z-index: 0;
+    }
+
+    /*This is to indicate to click on the hamburger and appear / disappear */
+    #toggle:checked + .menu {
+        display: block;
+    }
+    
+    #background {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    max-width: 100%;
+    height: auto;
+    }
+}

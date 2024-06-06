@@ -1,0 +1,130 @@
+body {
+    font-family: Raleway, 'sans-serif';
+    margin: 0;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+       
+}
+
+.nav ul li a {
+    font-family: Raleway, 'sans-serif';
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    margin-left: 25px;
+    justify-items: space-evenly;
+    
+}
+
+.nav ul li a:hover {
+    color: #F5D9D9;
+    font-weight: bold;
+}
+
+.mission {
+    background-image: url("https://onedrive.live.com/embed?resid=3B321C3E3EB27E40%212892&authkey=%21AIO-DlCH51YONDM&width=1440&height=696");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 300px; /*This is creating spacing and keep the text moving when you shrink the browser*/
+    padding-bottom: 300px;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.mission-title {
+    background-color: #F5D9D9;
+    opacity: 0.5;
+}
+
+.portfolio{
+    padding-top: 20px;
+}
+
+.portfolio-presentation {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+
+#objective {
+    width: 50%;
+    height: 50%;
+}
+
+#camera {
+    width: 50%;
+    height: 50%;
+}
+
+#tree {
+    width: 50%;
+    height: 50%;
+}
+
+p {
+    font-size: 15px;
+}
+
+.team {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.team-picture{
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: space-between;
+    column-gap: 5px;
+    row-gap: 15px;
+    padding-bottom: 20px;
+    align-items: end;
+}
+
+.legend {
+    text-align: center;
+    align-items: baseline;
+}
+
+#Andy {
+    border-radius: 5px;
+}
+
+#Jessica {
+    border-radius: 5px;
+}
+
+
+footer {
+    text-align: center;
+    background-color: #F5D9D9;
+    opacity: 0.5;
+    padding-bottom: 2px;
+}
+
+@media only screen and (max-width: 500px) {
+    .nav ul {
+        margin-left: 0;
+        justify-content: left;
+    }
+    
+    .nav ul li a {
+        margin-left: 10px;
+        font-size: 15px;
+    }
+}

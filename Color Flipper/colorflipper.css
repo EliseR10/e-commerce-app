@@ -1,0 +1,51 @@
+body{
+    font-family: Georgia;
+}
+
+.nav ul{
+    position: fixed;
+    display: inline-flex;
+    justify-content: right;
+    justify-items: right;
+    list-style-type: none;
+    left: 70px;
+    right: 0px;
+    top: 5px;
+    height: 30px;
+}
+
+nav ul li{
+    text-align: center;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: black;
+    float: right;
+    margin-left: 20px;
+    margin-right: 80px;
+
+}
+
+.container{
+    justify-content: center;
+    justify-items: center;
+    padding-top: 30%;
+    padding-left: 35%;
+    height: auto;
+    
+}
+
+btn, .btn-hero{
+    border: black solid 2px;
+    padding: 10px;
+    border-radius: 10%;
+    font-family: Georgia;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 20%;
+    background-color: transparent;
+}
+
+/*find how to swap black and white writting 
+depending on the background color*/

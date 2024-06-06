@@ -1,0 +1,18 @@
+table { 
+    color: #423C26;
+    font-family: Garamond;
+    margin: 10px;
+    font-size: 18px;
+}
+
+
+h2 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.icon{
+    position: relative;
+    top: 10px;
+    bottom: 10px;
+}

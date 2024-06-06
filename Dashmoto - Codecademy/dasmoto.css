@@ -1,0 +1,37 @@
+body {
+    font-family: arial;
+}
+
+h1 {
+    background-image: url("https://onedrive.live.com/embed?resid=3B321C3E3EB27E40%212859&authkey=%21AEHQw4e7ANruIH8&width=4488&height=3366");
+    width: 100%;
+    height: 200px;
+    font-size: 70px;
+    color: yellow;
+    text-align: center;
+    align-content: center; /*centre vertically*/
+    font-weight: bold;
+}
+
+#brushes {
+    background-color: lightgreen;
+    color: white;
+    font-size: 30px;
+}
+
+#frames {
+    background-color: lightpink;
+    color: white;
+    font-size: 30px;
+}
+
+#paint {
+    background-color: lightblue;
+    color: white;
+    font-size: 30px;
+}
+
+span {
+    color: blue;
+    font-weight: bold;
+}

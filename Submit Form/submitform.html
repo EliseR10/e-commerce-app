@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Submit Form</title>
+        <link rel="stylesheet" href="submitform.css"/>
+
+        <script src="submitform.js" type="text/javascript"></script>
+    </head>
+    
+    <body>
+    <form>
+        <h2>Your order</h2>
+        <label for="name" id="name">Your name</label>
+        <input type="text" id="name"><br>
+
+        <label for="email" id="email">Your email</label>
+        <input type="text" id="email"><br>
+
+        <label for="phone" id="phone">Your phone</label>
+        <input type="text" id="phone"><br>
+    </form>
+    <br>
+
+    <form>
+        <label for="zukini">Zukini</label>
+        <input id="quantity" name="quantity" type="number" min="1" max="15">
+        <input id="unitprice" name="unitprice" type="text" value="0.80">
+        <label for="total price" id="Total">Total</label>
+        <input id="total" name="total" type="text" onchange="zukini()" onkeyup="zukini()" onpaste="zukini()" oninput="zukini()">
+        <br>
+        <label for="tomato">Tomato</label>
+        <input id="quantitytomato" name="quantity" type="number" min="1" max="15">
+        <input id="unitpricetomato" name="unitprice" type="text" value="0.90">
+        <label for="total price" id="Total">Total</label>
+        <input id="totaltomato" name="total" type="text" onchange="tomato()" onkeyup="tomato()" onpaste="tomato()" oninput="tomato()">
+        <br>
+        <label for="Potatoe">Potatoe</label>
+        <input id="quantitypotatoe" name="quantity" type="number" min="1" max="15">
+        <input id="unitpricepotatoe" name="unitprice" type="text" value="0.60">
+        <label for="total price" id="Total">Total</label>
+        <input id="totalpotatoe" name="total" type="text" onchange="potatoe()" onkeyup="potatoe()" onpaste="potatoe()" oninput="potatoe()">
+        <br>
+        <label for="Sweet Potatoe">Sweet Pot.</label>
+        <input id="quantitysweet" name="quantity" type="number" min="1" max="15">
+        <input id="unitpricesweet" name="unitprice" type="text" value="0.70">
+        <label for="total price" id="Total">Total</label>
+        <input id="totalsweet" name="total" type="text" onchange="sweet()" onkeyup="sweet()" onpaste="sweet()" oninput="sweet()">
+        <br>
+    </form>
+
+    <br>
+    <!-- Too much to repeat 
+    <form>
+        <label for="pork">Pork</label>
+        <input id="main" name="main" type="number" min="5" max="25">
+        <label for="price">£2.35</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+        <label for="beef">Beef</label>
+        <input id="main" name="main" type="number" min="5" max="25">
+        <label for="price">£3.40</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+        <label for="Lamb">Lamb</label>
+        <input id="main" name="main" type="number" min="5" max="25">
+        <label for="price">£4.50</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+        <label for="Duck">Duck</label>
+        <input id="main" name="main" type="number" min="5" max="25">
+        <label for="price">£3.20</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+    </form>
+    
+    <br>
+
+    <form>
+        <label for="banana">Banana</label>
+        <input id="fruit" name="fruit" type="number" min="5" max="20">
+        <label for="price">£0.20</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+        <label for="kiwi">Kiwi</label>
+        <input id="fruit" name="fruit" type="number" min="5" max="20">
+        <label for="price">£0.60</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+        <label for="apple">Apple</label>
+        <input id="fruit" name="fruit" type="number" min="5" max="20">
+        <label for="price">£0.40</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+        <label for="orange">Orange</label>
+        <input id="Orange" name="fruit" type="number" min="5" max="20">
+        <label for="price">£0.70</label>
+        <label for="total" id="Total">Total</label>
+        <input id="total" type="text">
+        <br>
+    </form> -->
+
+    <br>
+
+    <form>
+        <label for="final total">Final Total</label>
+        <input id="finaltotal" name="finaltotal" type="text" onchange="total()" onkeyup="total()" onpaste="total()" oninput="total()">
+    </form>
+
+    <br>
+    
+    <input type="submit" id="submit" value="Place your order here!" onclick="result()">
+</body>
+
+</html>

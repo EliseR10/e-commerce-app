@@ -1,0 +1,21 @@
+table {
+    background-color: #E3C0C0;
+    font-family: Georgia;
+    margin: 100px;
+    margin-top: 100px;
+}
+
+.icon {
+    mix-blend-mode: multiply;
+    position: relative;
+    top: 10px;
+    bottom: 5px;
+}
+
+
+h2 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family: Garamond;
+    font-size: 30px;
+}

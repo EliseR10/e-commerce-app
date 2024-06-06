@@ -1,0 +1,37 @@
+h1 {
+    font-family: 'Verdana';
+    text-align: center;
+    margin-top: 250px;
+}
+
+span {
+    text-align: center;
+    margin-left: 360px;
+    font-family: 'Verdana';
+    font-size: 45px;
+}
+
+.button-container {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.btn, .decrease{
+    border: solid black 2px;
+    font-size: 20px;
+    font-family: 'Verdana';
+    margin-right: 5px;
+}
+
+.btn, .reset{
+    border: solid black 2px;
+    font-size: 20px;
+    font-family: 'Verdana';
+    margin-right: 5px;
+}
+
+.btn, .increase{
+    border: solid black 2px;
+    font-size: 20px;
+    font-family: 'Verdana';
+}
