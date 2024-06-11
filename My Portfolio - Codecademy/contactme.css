@@ -1,0 +1,134 @@
+body {
+    font-family: 'Libre Franklin';
+    margin: 0;
+    background-color: #FAF0F0;
+}
+
+header {
+    display: flex;
+    background-color: #E9B0B0;
+}
+
+.name {
+    margin-left: 15px;
+    width: 40%;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    width: 70%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    
+}
+nav ul li{
+    display: inline-flex;
+    margin-right: 15px;
+    padding-right: 15px;
+}
+
+nav ul li a{
+    color: black;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*Style for hamburger label*/
+label {
+    margin: 0 40px 0 0;
+    display: none;
+    line-height: 70px;
+}
+
+/*Checkbox disappear*/
+#toggle {
+    display: none;
+}
+
+main {
+    margin-top: 70px;
+    text-align: center;
+    width: 100%;
+    background-color: #FAF0F0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0; /*To place the footer at the bottom of the page*/
+    margin-top: 20px;
+    border: solid 3px black;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #E9B0B0;
+}
+
+.social {
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    font-size: 16px;
+    color: black;
+}
+
+.social:hover{
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
+.button {
+    margin-top: 25px;
+    padding: 30px 60px;
+    border-radius: 25px;
+    box-shadow: 2px 3px;
+    font-size: 18px;
+}
+
+.button:hover {
+    color: #775555;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+
+/*MEDIA QUERY*/
+/*PHONE*/
+@media only screen and (max-width: 500px){
+    label{
+        display: block;
+        cursor: pointer;
+        right: 15px;
+        position: absolute;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    nav ul li {
+        text-align: center;
+        width: 100%;
+        display: none;
+    }
+
+    nav ul li a{
+        display: block;
+        margin: 0;
+        margin-right: 40px;
+        margin-left: 5px;
+        padding-top: 6px;
+    }
+
+    #toggle:checked + ul li {
+        display: block;
+    }
+}

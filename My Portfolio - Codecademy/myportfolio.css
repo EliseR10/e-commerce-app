@@ -1,0 +1,209 @@
+body {
+    font-family: 'Libre Franklin';
+    margin: 0;
+    background-image: linear-gradient(#E9B0B0, #FFE6E6, #FFF6F6);
+}
+
+header {
+    display: flex;
+}
+
+.name {
+    margin-left: 15px;
+    width: 40%;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    width: 70%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    
+}
+nav ul li{
+    display: inline-flex;
+    margin-right: 15px;
+    padding-right: 15px;
+}
+
+nav ul li a{
+    color: black;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*Style for hamburger label*/
+label {
+    margin: 0 40px 0 0;
+    display: none;
+    line-height: 70px;
+}
+
+/*Checkbox disappear*/
+#toggle {
+    display: none;
+}
+
+.presentation {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    float: left; /*to wrap text around the picture*/
+    padding-bottom: 40px;
+
+}
+
+#photo {
+    min-width: 40%;
+    max-width:70%;
+    height: auto;
+    float: left;
+}
+
+.text {
+    margin-left: 15px;
+    margin-right: 15px;
+    min-width: 50%;
+    height: 150px;
+    text-align: justify;
+    align-content: center;
+    align-items: center;
+}
+
+.projects {
+    margin-left: 15px;
+    padding-top: 25px;
+}
+
+.title-project {
+    margin-left: 30px;
+}
+
+h4:hover {
+    cursor: pointer;
+}
+
+#PT {
+    display: none;
+}
+
+#Company {
+    display: none;
+}
+
+#Tea{
+    display: none;
+}
+
+.description {
+    text-align: justify;
+}
+
+.skills {
+    display: grid;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.icon:hover {
+    color:#775555;
+    transform: scale(1.2);
+}
+
+footer {
+    /*position: fixed;
+    z-index: 2;*/
+    margin-top: 20px;
+    border: solid 3px black;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    background-color: #E9B0B0;
+}
+
+.social {
+    margin-right: 15px;
+    margin-left: 15px;
+    align-items: center;
+    font-size: 16px;
+    color: black;
+}
+
+.social:hover{
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
+/*MEDIA QUERY*/
+/*PHONE*/
+@media only screen and (max-width: 500px){
+    label{
+        display: block;
+        cursor: pointer;
+        right: 15px;
+        position: absolute;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    nav ul li {
+        text-align: center;
+        width: 100%;
+        display: none;
+    }
+
+    nav ul li a{
+        display: block;
+        margin: 0;
+        margin-right: 40px;
+        margin-left: 5px;
+        padding-top: 6px;
+    }
+
+    #toggle:checked + ul li {
+        display: block;
+    }
+
+    .presentation {
+        max-width: 50%;
+    }
+
+    #photo {
+        margin-left: 15%;
+    }
+
+    .text {
+        min-width: 50%;
+        height: 250px;
+    }
+
+    .description {
+        margin-right: 20px;
+    }
+}
+
+
+/*TABLET*/
+@media only screen and (max-width: 1200px) {
+    .text {
+        margin-top: 9%;
+    }
+}
+
+/*LAPTOP*/
+@media only screen and (min-width: 1200px) {
+    .text {
+        margin-top: 10%;
+    }
+}
