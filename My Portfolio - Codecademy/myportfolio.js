@@ -14,7 +14,7 @@ function hideShow1() {
         fArrow.style.transform = 'rotate(90deg)';
         first.style.color = '#775555';
     }
-}
+}   
 
 document.getElementById("first").onclick = hideShow1;
 
