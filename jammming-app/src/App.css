@@ -1,0 +1,160 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.signInButton {
+  background-color: #36A32D;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 25px;
+  margin-top: 10px;
+  border-radius: 25px;
+  font-size: 20px;
+}
+
+.signInButton:hover {
+  transform: scale(1.2);
+}
+
+#logo {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+#input {
+  width: 250px;
+  height: 40px;
+  border: black 1px solid;
+  border-radius: 25px; 
+}
+
+.search {
+  display: flex;
+  min-height: 75vh;
+  background-color: pink;
+  padding-top: 10px;
+}
+
+.searchIcon {
+  margin-left: 5px;
+}
+
+#searchbar {
+  width: 80%;
+  margin-left: 20px;
+}
+
+#results {
+  flex: 2;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.icon {
+  margin-left: 5px;
+  width: 50px;
+  padding-top: 10px;
+}
+
+.btn-search {
+  border: none;
+  cursor: pointer;
+  background-color: pink;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+#playlist {
+  flex: 1;
+  padding: 20px;
+  border-left: 1x solid #ddd;
+  overflow-y: auto;
+  min-width: 450px;
+}
+
+#list-track {
+  list-style: none;
+  margin-top: 10px;
+}
+
+#remove {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.category {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-decoration: underline;
+}
+
+title {
+  color: black;
+}
+
+footer {
+  bottom: 0;
+  height: 250px;
+  justify-content: end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+}
+
+#add{
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #D313A8;
+  font-size: 17px;
+}
+
+#add:hover{
+  color: white;
+}
+
+#spotify-playlist {
+  border: 1px solid black;
+  box-shadow: 5px 5px;
+}
+
+#spotify {
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 5px 5px;
+  background-color: #D313A8;
+  color: white;
+  font-size: 17px;
+}
+
+#spotify:hover {
+  color: black;
+}
+
+#remove{
+  position: absolute;
+  right: 25px;
+  border-radius: 5px;
+}
