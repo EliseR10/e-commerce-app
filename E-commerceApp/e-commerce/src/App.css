@@ -1,38 +1,102 @@
-/*.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*Welcome Page*/
+.welcomePage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-family: JejuMyeongjo;
+}
+
+#title {
   color: white;
+  font-size: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+#username {
+  font-size: 20px;
+  font-family: JejuMyeongjo;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}*/
+#password {
+  font-size: 20px;
+  font-family: JejuMyeongjo;
+}
+
+#registerBtn {
+  font-size: 25px;
+  font-family: JejuMyeongjo;
+}
+
+#registerLink {
+  text-decoration: none;
+  color: black;
+}
+
+/*Home Page*/
+.homePage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+#titleHome {
+  color: white;
+  font-size: 30px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+}
+
+.cart {
+  height: 45px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.account {
+  height: 45px;
+  margin-top: 20px;
+}
+
+.offer {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SpanishTitle {
+  border: 1px solid black;
+  background-color: #E7E4E4;
+  padding-left: 5px;
+  justify-content: center;
+}
+
+.FrenchTitle {
+  border: 1px solid black;
+  background-color: #E7E4E4;
+  margin-top: 5vh;
+  padding-left: 5px;
+}
+
+.BulgarianTitle {
+  border: 1px solid black;
+  background-color: #E7E4E4;
+  margin-top: 5vh;
+  padding-left: 5px;
+}
+
+.CartBtn {
+  display: flex;
+  justify-content: right;
+}
+
