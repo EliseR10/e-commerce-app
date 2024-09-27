@@ -1,0 +1,105 @@
+SELECT * FROM store LIMIT 10;
+
+SELECT COUNT (DISTINCT(order_id)) FROM store;
+SELECT COUNT (DISTINCT(customer_id)) FROM store;
+
+/*How many orders did this customer make?*/
+SELECT customer_id, customer_email, customer_phone FROM store WHERE customer_id = 1;
+
+/*How many orders include this item as item_1*/
+SELECT item_1_id, item_1_name, item_1_price FROM store WHERE item_1_id = 4;
+
+/*Normalize version of this database: make a customers table from store*/
+CREATE TABLE customers AS 
+SELECT DISTINCT customer_id, customer_phone, customer_email
+FROM store;
+
+/*Make of customer_id my primary key*/
+ALTER TABLE customers
+ADD PRIMARY KEY (customer_id);
+
+/*Normalize version of this database: make a items table from store*/
+CREATE TABLE items AS
+SELECT DISTINCT item_1_id AS item_id, item_1_name AS name, item_1_price AS price
+FROM store
+UNION
+SELECT DISTINCT item_2_id AS item_id, item_2_name AS name, item_2_price AS price
+FROM store
+WHERE item_2_id IS NOT NULL
+UNION
+SELECT DISTINCT item_3_id AS item_id, item_3_name AS name, item_3_price AS price
+FROM store
+WHERE item_3_id IS NOT NULL; 
+
+/*Make of item_id my primary key*/
+ALTER TABLE items
+ADD PRIMARY KEY (item_id);
+
+/*Normalize version of this database: make a orders table from store*/
+CREATE TABLE orders_items AS
+SELECT order_id, item_1_id AS item_id
+FROM store
+UNION ALL
+SELECT order_id, item_2_id AS item_id
+FROM store
+WHERE item_2_id IS NOT NULL
+UNION ALL
+SELECT order_id, item_3_id AS item_id
+FROM store
+WHERE item_3_id IS NOT NULL;
+
+/*UNION ALL: This combines the results of multiple SELECT statements. UNION ALL includes all rows from each SELECT statement, even if there are duplicates.*/
+
+/*create a table for orders*/
+CREATE TABLE orders AS
+SELECT DISTINCT order_date, customer_id, order_id
+FROM store;
+
+/*designate the primary key in orders*/
+ALTER TABLE orders
+ADD PRIMARY KEY (order_id);
+
+/*designate the foreign key of customer_id*/
+ALTER TABLE orders
+ADD FOREIGN KEY (customer_id)
+REFERENCES customers(customer_id);
+
+/*do the same with order items*/
+ALTER TABLE orders_items
+ADD FOREIGN KEY (item_id)
+REFERENCES items(item_id);
+
+/*do the same with order id*/
+ALTER TABLE orders_items
+ADD FOREIGN KEY (order_id)
+REFERENCES orders(order_id);
+
+/*query the original store to return customers who made an order after July 25th*/
+SELECT * FROM store WHERE order_date > '2019-07-25';
+
+/*query the same with your normalized tables*/
+SELECT customer_email FROM customers, orders WHERE customers.customer_id = orders.customer_id AND order_date > '2019-07-25';
+
+/*query the original store table to return the number of orders containing each unique item.
+In SQL, the WITH keyword is used to define a Common Table Expression (CTE). A CTE is a temporary result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. It helps to simplify complex queries by breaking them down into more manageable parts.
+*/
+WITH all_items AS (
+  SELECT item_1_id as item_id
+  FROM STORE
+  UNION ALL
+
+  SELECT item_2_id as item_id
+  FROM STORE
+  WHERE item_2_id IS NOT NULL
+  UNION ALL
+
+  SELECT item_3_id as item_id
+  FROM STORE
+  WHERE item_3_id IS NOT NULL
+)
+SELECT item_id, COUNT(*)
+FROM all_items
+GROUP BY item_id;
+
+/*query the same has above but with your normalized database*/
+SELECT item_id, COUNT(*) FROM orders_items GROUP BY item_id;
