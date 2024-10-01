@@ -1,38 +1,440 @@
-/*.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*Welcome Page*/
+.welcomePage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: JejuMyeongjo;
+}
+
+#title {
+  color: white;
+  font-size: 30px;
+}
+
+#username {
+  font-size: 20px;
+  font-family: JejuMyeongjo;
+}
+
+#password {
+  font-size: 20px;
+  font-family: JejuMyeongjo;
+}
+
+#registerBtn {
+  font-size: 25px;
+  font-family: JejuMyeongjo;
+}
+
+#registerLink {
+  text-decoration: none;
+  color: black;
+}
+
+/*Home Page*/
+.homePage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+#titleHome {
+  color: white;
+  font-size: 30px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+}
+
+.cart {
+  height: 45px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.account {
+  height: 45px;
+  margin-top: 20px;
+}
+
+.offer {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SpanishTitle {
+  border: 1px solid black;
+  background-color: #E7E4E4;
+  padding-left: 5px;
+  justify-content: center;
+}
+
+.FrenchTitle {
+  border: 1px solid black;
+  background-color: #E7E4E4;
+  margin-top: 5vh;
+  padding-left: 5px;
+}
+
+.BulgarianTitle {
+  border: 1px solid black;
+  background-color: #E7E4E4;
+  margin-top: 5vh;
+  padding-left: 5px;
+}
+
+.CartBtn {
+  display: flex;
+  justify-content: right;
+}
+
+/*be more specific to target the button out of React Bootstrap rules*/
+#CartBtn button:hover, .CartBtn .btn:hover{
+  font-weight: bold;
+  background: white;
+}
+
+/*Cart Page*/
+.cartPage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+#titleCart {
+  color: white;
+  font-size: 30px;
+  margin-right: 70px;
+  margin-top: 20px; 
+}
+
+a#titleCart h3 {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+.accountCart {
+  height: 45px;
+  margin-top: 20px;
+}
+
+.yourCart {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#yourCartTitle {
+  color: white;
+  font-size: 30px;
+}
+
+.cartResume {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.inputAndBin {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.inputCart {
+  height: 35px;
+  margin-right: 15px;
+}
+
+.binCart {
+  height: 35px;
+}
+
+.orderNow {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.orderNowBtn {
+  width: 100%;
+}
+
+.orderNowBtn:hover {
+  font-weight: bold;
+  font-size: 18px;
+  background: white;
+}
+
+/*Be more specific to target the button*/
+.orderNowBtn:hover, .orderNow .btn:hover{
+  background: white;
+}
+
+/*Thank You Page*/
+.thankYouPage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+.thankYouMessage {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.message {
+  text-align: center;
+  color: white;
+  height: 50vh;
+  line-height: 2;
+}
+
+.contactInfo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/*Account page*/
+.accountPage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+.yourAccount {
+  height: 80vh;
+}
+
+.infoAccount {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input {
+  width: 200px;
+}
+
+#inputPhone:invalid{
+  border: 2px solid red;
+}
+
+#inputPhone:valid {
+  border: 2px solid green;
+}
+
+.btn1 {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5px;
+}
+
+#usernameInput {
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+#emailInput {
+  margin-top: 20px;
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+#phoneInput {
+  margin-top: 20px;
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+
+#passwordInput {
+  margin-top: 20px;
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+}
+
+/*be more specific to target the delete button*/
+button.deleteAccountBtn {
+  font-size: 20px;
+}
+
+button.deleteAccountBtn:hover {
+  font-weight: bold;
+  background: white;
+}
+
+/*Add a Product page*/
+.AddProductPage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+.addAProduct {
+  height: 80vh;
+}
+
+#addAProductTitle {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.ProductDetails {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}*/
+#productName {
+  font-size: 20px;
+}
+
+#productDescription {
+  font-size: 20px;
+}
+
+#productPrice {
+  font-size: 20px;
+}
+
+.validateBtn {
+  display: flex;
+  justify-content: center;
+}
+
+button.validateProductBtn {
+  font-size: 20px;
+}
+
+button.validateProductBtn:hover {
+  font-weight: bold;
+  background: white;
+}
+
+/*Admin Page*/
+.adminAccountPage {
+  min-height: 100vh; /*ensure full viewport height*/
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#4250CE, #DDE0FF);
+  font-family: JejuMyeongjo;
+}
+
+.yourAdminAccount {
+  height: 80vh;
+}
+
+.infoAdminAccount {
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+}
+
+.input {
+  width: 200px;
+}
+
+#inputPhone:invalid{
+  border: 2px solid red;
+}
+
+#inputPhone:valid {
+  border: 2px solid green;
+}
+
+.btn1 {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5px;
+}
+
+#usernameInput {
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+#emailInput {
+  margin-top: 20px;
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+#phoneInput {
+  margin-top: 20px;
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+
+#passwordInput {
+  margin-top: 20px;
+  font-family: JejuMyeongjo;
+  font-size: 20px;
+}
+
+.productList {
+  margin-top: 20px;
+}
+
+.product1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modifyProduct {
+  color: black;
+  font-style: italic;
+}
+
+.addAProductPart {
+  display: flex;
+  justify-content: right;
+  margin-top: 5px;
+}
+
+#addAProductBtn {
+  font-size: 15px;
+}
