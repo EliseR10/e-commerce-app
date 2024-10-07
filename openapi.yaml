@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: E-commerce app API documentation
+  version: 1.0.0
+  description: A documentation about my basic API for e-commerce app
+paths:
+  /product:
+    summary: Product details
+    description: Get the details of the product to display
+    get:
+      summary: Get all the product's details
+      description: ''
+      operationId: products_details
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "name": "Learn Spanish online",
+                    "description": "Learn Spanish online  [...]",
+                    "price": 2000
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    Error retrieving products.
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Display products data
+  /cart/:customers_id:
+    summary: Cart API endpoint
+    post:
+      summary: Add items to cart
+      description: Add the items to the cart
+      operationId: products_cart
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "customers_id":1,
+                    "product_id":1,
+                    "quantity": 1
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error adding item to cart"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Cart
+    get:
+      summary: Display cart
+      description: Display items you added in your cart
+      operationId: display_cart
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "cartItems": [
+                    "customers_id":1,
+                    "product_id": 1,
+                    "name": "Learn Spanish online",
+                    "price": 2000,
+                    "quantity": 1,
+                    "total_per_product": 2000
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error retrieving cart"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Cart
+  /cart/:customers_id/:product_id:
+    summary: Updating/Deleting cart
+    description: Used to update your cart or delete your cart
+    put:
+      summary: Update your cart
+      description: Update the number of items of your cart
+      operationId: update_cart
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "The cart has been updated to:
+                    "customers_id":1,
+                    "product_id":1,
+                    "quantity":2
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error updating the cart item quantity"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Cart
+    delete:
+      summary: Delete items of your cart
+      description: Delete items of your cart
+      operationId: delete_cart
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "Item removed from cart"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Item removed from cart"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Cart
+  /orders/:customers_id:
+    summary: Validate your order
+    description: Validate your order and push your cart items to the definite orders
+    post:
+      summary: Validate your order
+      description: Validate your order
+      operationId: validate_orders
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "Order placed successfully"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error placing your order"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Orders
