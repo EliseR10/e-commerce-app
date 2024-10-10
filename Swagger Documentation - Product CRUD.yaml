@@ -1,0 +1,105 @@
+openapi: 3.0.1
+info:
+  title: E-commerce app API documentation
+  version: 1.0.0
+  description: A documentation about my basic API for e-commerce app
+paths:
+  /product:
+    summary: Create, get and update a product
+    description: Create, get and update a product
+    post:
+      summary: Create or update the product
+      description: Create or update the product
+      operationId: create_update_product
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "message":"Product updated to the database",
+                    "id": 1,
+                    "name": "Learn..."
+                    "description": "description of the product",
+                    "price": "price of the product"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error adding or updating this product", err
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Product
+    get:
+      summary: Display the product
+      description: Display the product
+      operationId: display_product
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "id": "id product",
+                    "name": "name of the product",
+                    "description": "description of the product",
+                    "price":"price of the product"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |
+                    {
+                    "Error retrieving the products", err
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Product
+  /product/:id:
+    summary: Delete a product
+    description: Delete a product
+    delete:
+      summary: Delete the product
+      description: Delete the product
+      operationId: delete_product
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "message":"Product removed from database",
+                    "id": {
+                    "id": "product id",
+                    "name": "product name",
+                    "description":"product description",
+                    "price":"price of product"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error deleting the product", err
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Product
