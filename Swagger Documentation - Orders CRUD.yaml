@@ -1,0 +1,135 @@
+openapi: 3.0.1
+info:
+  title: E-commerce app API documentation
+  version: 1.0.0
+  description: A documentation about my basic API for e-commerce app
+paths:
+  /orders/:customers_id:
+    summary: Display, create and update orders
+    description: Display, create and update orders
+    get:
+      summary: Display orders
+      description: Display orders
+      operationId: display_orders
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                        "orders": {
+                            "id": 3,
+                            "customers_id": 1,
+                            "order_date": "2024-10-06T23:00:00.000Z",
+                            "total_order_amount": "2000"
+                        }
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                        "message": "Error retrieving orders"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Orders
+    /orders/:customers_id:
+    summary: Validate your order
+    description: Validate your order and push your cart items to the definite orders
+    post:
+      summary: Validate your order
+      description: Validate your order
+      operationId: validate_orders
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "Order placed successfully"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "Error placing your order"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Orders
+    put:
+      summary: Update orders
+      description: Update orders
+      operationId: update_orders
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                            "message":"Your order was amended successfully",
+                            "quantity": 1,
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    }
+                    "message": "Error updating this order",
+                        }
+        default:
+          description: Default error sample response
+      tags:
+        - Orders
+  /orders/:id:
+    summary: Delete orders
+    description: Delete orders
+    delete:
+      summary: Delete the orders
+      description: Delete the orders
+      operationId: delete_orders
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                        "message": "Order deleted successfully",
+                        "orders": {
+                            "id": 3,
+                            "customers_id": 1,
+                            "order_date": "2024-10-06T23:00:00.000Z",
+                            "total_order_amount": "2000"
+                        }
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                        "message": "Error deleting the order"
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Orders

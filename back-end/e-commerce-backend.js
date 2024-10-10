@@ -212,6 +212,128 @@ pool.connect((err) => {
     });
     
 
+    /*ACCOUNT API ENDPOINTS*/
+    /*Create an account*/
+
+    /*Display account details*/
+    app.get('/account/:id', async (req, res) => {
+        try {
+                const result = await pool.query('SELECT customers_username, customers_phone_number, password FROM account');
+                res.json(result.rows);
+                console.log(result.rows);
+        } catch (err) {
+            console.error('Error retrieving the account data', err);
+            res.status(500).send('Server error');
+        }
+    });
+
+    /*Update account details. Front-end: "save" button*/
+    app.put('/account/:id', async (req, res) => {
+        const { id } = req.params;
+        const { customers_phone_number, password } = req.body;
+
+        try {
+
+            //Prepare the update query
+            const values = []; //array to hold the values for the query
+            let setClauses = []; //array to hold the SET clause of the SQL query
+
+            if (customers_phone_number) {
+                setClauses.push(`customers_phone_number = $${values.length + 1}`); //create the next placeholders like $1, useful to avoid SQL injection attacks
+                values.push(customers_phone_number); //add phone number to values
+            }
+
+            if (password) {
+                setClauses.push(`password = $${values.length + 1}`); 
+                values.push(password);
+            }
+
+            //If no field provided, return an error
+            if (setClauses.length === 0) {
+                return res.status(400).json({ message: 'No fields provided for update.'});
+            }
+
+            const query = `
+                UPDATE account
+                SET ${setClauses.join(', ')}
+                WHERE id = $${values.length + 1}
+                RETURNING *;
+            `;
+
+            /*Add the id to the end of the values array. This ensures that SQL query 
+            knows which specific record to update*/
+            values.push(id);
+
+            const result = await pool.query(query, values);
+
+            //Check if the account was found and updated
+            if (result.rows.length === 0){
+                return res.status(400).json({ message: 'Account not found'});
+            }
+
+            res.json({ message: 'Account updated successfully', account: result.rows[0] });
+            
+        } catch (err) {
+            console.error('Error updating the account', err);
+            res.status(500).send('Server error');
+        };
+    });
+    
+    /*Delete account details. Front-end: "delete account" button*/
+    app.delete('/account/:id', async(req, res) => {
+        const { id } = req.params;
+    
+        try {
+            const query = `
+                DELETE FROM account
+                WHERE id = $1
+                RETURNING *;
+            `;
+    
+            const result = await pool.query(query, [id]);
+                          
+            res.json({ message: 'Account deleted successfully', id: result.rows[0] });
+            /*This above is giving information to the front-end/client about 
+            the account being deleted correctly*/
+    
+        } catch (err) {
+            console.error('Error deleting the account', err);
+            res.status(500).send('Server error');
+        }
+    });
+    
+
+    /*ORDER API ENDPOINTS*/
+    /*Display orders. Front-end: account page*/
+    app.get('/orders/:customers_id', async (req, res) => {
+        const { customers_id } = req.params;
+
+        try {
+            const query = `
+            SELECT 
+                orders.id, 
+                orders.order_date, 
+                orders.total_order_amount, 
+                order_items.product_id 
+            FROM 
+                orders 
+            JOIN 
+                order_items 
+            ON 
+                orders.id = order_items.orders_id
+            WHERE
+                orders.customers_id = $1
+            `
+            const result = await pool.query(query, [customers_id]);
+            res.json(result.rows);
+            console.log(result.rows);
+
+        } catch (err) {
+            console.error('Error retrieving orders', err);
+            res.status(500).send('Server error');
+        }
+    });
+
     /*Create the order and save cart items + empty cart. Front-end: "Order Now" */
     app.post('/orders/:customers_id', async (req, res) => {
         const { customers_id } = req.params;
@@ -277,6 +399,51 @@ pool.connect((err) => {
         }
     });
 
+    /*Update orders (quantity). Front-end: button to define*/
+    app.put('/orders/:customers_id', async (req, res) => {
+        const { customers_id } = req.params;
+        const { quantity } = req.body;
+
+        try {
+            const query = `
+                UPDATE order_items
+                SET quantity = $1
+                WHERE orders_id IN (
+                    SELECT id FROM orders WHERE customers_id = $2
+                )
+                RETURNING *;
+            `
+            const result = await pool.query(query, [quantity, customers_id]);
+
+            res.json({ message: 'Your order was amended', order_items: result.rows[0] });
+            console.log(result.rows[0]);
+
+        } catch (err) {
+            console.error('Error updating this order', err);
+            res.status(500).send('Server error');
+        }
+    });
+
+    /*Delete orders. Front-end: button to define*/
+    app.delete('/orders/:id', async(req, res) => {
+        const { id } = req.params;
+    
+        try {
+            const query = `
+                DELETE FROM orders
+                WHERE id = $1
+                RETURNING *;
+            `;
+    
+            const result = await pool.query(query, [id]);
+                          
+            res.json({ message: 'Order deleted successfully', orders: result.rows[0] });
+    
+        } catch (err) {
+            console.error('Error deleting the order', err);
+            res.status(500).send('Server error');
+        }
+    });
 
     /*Starting a server*/
     app.listen(PORT, () => {

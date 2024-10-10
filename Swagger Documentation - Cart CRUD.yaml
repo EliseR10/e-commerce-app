@@ -4,38 +4,6 @@ info:
   version: 1.0.0
   description: A documentation about my basic API for e-commerce app
 paths:
-  /product:
-    summary: Product details
-    description: Get the details of the product to display
-    get:
-      summary: Get all the product's details
-      description: ''
-      operationId: products_details
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                Success:
-                  value: |-
-                    {
-                    "name": "Learn Spanish online",
-                    "description": "Learn Spanish online  [...]",
-                    "price": 2000
-                    }
-        '500':
-          content:
-            application/json:
-              examples:
-                Failed:
-                  value: |-
-                    {
-                    Error retrieving products.
-                    }
-        default:
-          description: Default error sample response
-      tags:
-        - Display products data
   /cart/:customers_id:
     summary: Cart API endpoint
     post:
@@ -160,33 +128,4 @@ paths:
           description: Default error sample response
       tags:
         - Cart
-  /orders/:customers_id:
-    summary: Validate your order
-    description: Validate your order and push your cart items to the definite orders
-    post:
-      summary: Validate your order
-      description: Validate your order
-      operationId: validate_orders
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                Success:
-                  value: |-
-                    {
-                    "Order placed successfully"
-                    }
-        '500':
-          content:
-            application/json:
-              examples:
-                Failed:
-                  value: |-
-                    {
-                    "Error placing your order"
-                    }
-        default:
-          description: Default error sample response
-      tags:
-        - Orders
+  

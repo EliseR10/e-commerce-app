@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: E-commerce app API documentation
+  version: 1.0.0
+  description: A documentation about my basic API for e-commerce app
+paths:
+  /account/:id:
+    summary: Display, update and delete account
+    description: Display, update and delete account
+    get:
+      summary: Get the account information
+      description: Get the account information
+      operationId: display_account
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "customers_username": "test@test.com",
+                    "customers_phone_number": "01531 456789",
+                    "password": "password2"
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                    "message": "Error retrieving the account data."
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Account
+    put:
+      summary: Update details of account
+      description: Update details of account
+      operationId: update_account
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                    "message": "Account updated successfully",
+                    "id": {
+                            "id": 1,
+                            "customers_username": "test@test.com",
+                            "password": "password2",
+                            "customers_phone_number": "01531 456789",
+                            "role_id": 2,
+                            "customers_id": 1
+                        }
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                        "message": "Error updating the account."
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Account
+    delete:
+      summary: Delete the account
+      description: Delete the account
+      operationId: delete_account
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                        "message": "Account deleted successfully",
+                        "id": {
+                            "id": 1,
+                            "customers_username": "test@test.com",
+                            "password": "password2",
+                            "customers_phone_number": "01531 456789",
+                            "role_id": 2,
+                            "customers_id": 1
+                        }
+                    }
+        '500':
+          content:
+            application/json:
+              examples:
+                Failed:
+                  value: |-
+                    {
+                        "message": "Error deleting the account."
+                    }
+        default:
+          description: Default error sample response
+      tags:
+        - Account
