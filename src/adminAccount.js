@@ -17,6 +17,7 @@ export default function AdminAccount() {
                 </div>
 
                 <Link to="/cart"><Button variant="light" className="cart">Cart</Button></Link>
+                <Button variant="light" className="logout">Logout</Button>
             </div>
 
             <div className="yourAdminAccount">
@@ -26,11 +27,6 @@ export default function AdminAccount() {
                     <label id="usernameInput" for="username">Username</label>
                     <br></br>
                     <input className="input" type="text" name="username" value="See Database" readonly></input>
-                    <br></br>
-
-                    <label id="emailInput" for="email">Email address</label>
-                    <br></br>
-                    <input className="input" type="text" name="email" value="See Database" readonly></input>
                     <br></br>
 
                     <label id="phoneInput" for="phone number">Phone number</label>
@@ -54,17 +50,17 @@ export default function AdminAccount() {
                     <div className="product1">
                         <p>Add name from database</p>
                         <a href="#" className="modifyProduct">Modify this product</a>
-                        <Button variant="light" className="binCart"><FontAwesomeIcon icon={faTrashCan} /></Button>
+                        <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
                     </div>
                     <div className="product2">
                         <p>Add name from database</p>
                         <a href="#" className="modifyProduct">Modify this product</a>
-                        <Button variant="light" className="binCart"><FontAwesomeIcon icon={faTrashCan} /></Button>
+                        <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
                     </div>
                     <div className="product3">
                         <p>Add name from database</p>
                         <a href="#" className="modifyProduct">Modify this product</a>
-                        <Button variant="light" className="binCart"><FontAwesomeIcon icon={faTrashCan} /></Button>
+                        <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
                     </div>
                     <div className="addAProductPart">
                         <Button id="addAProductBtn" variant="light">Add a product</Button>

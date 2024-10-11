@@ -19,6 +19,11 @@ export default function AddProduct() {
                 <h3 id="addAProductTitle">Add a Product</h3>
 
                 <div className="ProductDetails">
+                    <label id="productId" for="productId">Product ID</label>
+                    <br></br>
+                    <input className="input" type="text" name="productId"></input>
+                    <br></br>
+
                     <label id="productName" for="productName">Name of the product</label>
                     <br></br>
                     <input className="input" type="text" name="productName"></input>

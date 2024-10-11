@@ -227,11 +227,17 @@ a#titleCart h3 {
   height: 80vh;
 }
 
+.logout {
+  height: 45px;
+  margin-top: 20px;
+}
+
 .infoAccount {
-  height: 60vh;
+  height: 55vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid red;
 }
 
 .input {
@@ -260,11 +266,7 @@ a#titleCart h3 {
   font-family: JejuMyeongjo;
   font-size: 20px;
 }
-#emailInput {
-  margin-top: 20px;
-  font-family: JejuMyeongjo;
-  font-size: 20px;
-}
+
 #phoneInput {
   margin-top: 20px;
   font-family: JejuMyeongjo;
@@ -277,9 +279,31 @@ a#titleCart h3 {
   font-size: 20px;
 }
 
+.previousOrder {
+  margin-top: 20px;
+  height: 15vh;
+  border: 1px solid black;
+}
+
+.order1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.yourOrder {
+  color: black;
+  font-style: italic;
+}
+
+.binOrder {
+  height: 35px;
+  margin-top: -5px;
+}
+
 .deleteBtn {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 
 /*be more specific to target the delete button*/
@@ -314,6 +338,10 @@ button.deleteAccountBtn:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#productId {
+  font-size: 20px;
 }
 
 #productName {
@@ -427,6 +455,11 @@ button.validateProductBtn:hover {
 .modifyProduct {
   color: black;
   font-style: italic;
+}
+
+.binProduct {
+  height: 35px;
+  margin-top: -5px;
 }
 
 .addAProductPart {

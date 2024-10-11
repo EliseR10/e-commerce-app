@@ -4,6 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
+//To import icons from FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 export default function Account() {
     return (
         <Container className="accountPage">
@@ -13,6 +17,7 @@ export default function Account() {
                 </div>
 
                 <Link to="/cart"><Button variant="light" className="cart">Cart</Button></Link>
+                <Button variant="light" className="logout">Logout</Button>
             </div>
 
             <div className="yourAccount">
@@ -22,11 +27,6 @@ export default function Account() {
                     <label id="usernameInput" for="username">Username</label>
                     <br></br>
                     <input className="input" type="text" name="username" value="See Database" readonly></input>
-                    <br></br>
-
-                    <label id="emailInput" for="email">Email address</label>
-                    <br></br>
-                    <input className="input" type="text" name="email" value="See Database" readonly></input>
                     <br></br>
 
                     <label id="phoneInput" for="phone number">Phone number</label>
@@ -43,6 +43,15 @@ export default function Account() {
                     <br></br>
                     <Button className="btn1" variant="light">Save</Button>
 
+                </div>
+
+                <div className="previousOrder">
+                    <h5>Your orders:</h5>
+                    <div className="order1">
+                        <p>Add name from database</p>
+                        <a href="#" className="yourOrder">Modify this order</a>
+                        <Button variant="light" className="binOrder"><FontAwesomeIcon icon={faTrashCan} /></Button>
+                    </div>
                 </div>
 
                 <div className="deleteBtn">
