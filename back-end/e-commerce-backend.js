@@ -6,6 +6,8 @@
     const PORT = 4000;
     /*To load environment variables from .env file*/
     require('dotenv').config(); 
+    /*Cors request*/
+    const cors = require('cors');
 
 /*Connect to database*/
 const pool = new Pool ({
@@ -28,6 +30,12 @@ pool.connect((err) => {
 /*Writing routes*/
     /*Middleware to parse JSON*/
     app.use(express.json());
+
+    /*Middleware for CORS*/
+    app.use(cors({
+        origin: 'http://localhost:3000',
+        method: 'GET, POST, PUT, DELETE',
+    }));
 
     /*PRODUCT DATA API ENDPOINT*/
     /*Create / Update a product details. Front-end: "validate" button from addAProduct page*/
