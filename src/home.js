@@ -10,6 +10,7 @@ export default function Home() {
     const [cart, setCart] = useState([]);
     const location = useLocation(); //detect route changes
 
+        /*Display product */
         useEffect(() => {
         try {
             fetch('http://localhost:4000/product', {
@@ -26,6 +27,7 @@ export default function Home() {
                 setProduct(product);
                 setLoading(false);
             })
+
         } catch (err) {
             console.error('Error retrieving products ' + err);
             setLoading(false);
@@ -35,7 +37,7 @@ export default function Home() {
 
         const addToCart = (product_id, quantity) => {
             try {
-                fetch('http://localhost:4000/cart/:customers_id',{
+                fetch('http://localhost:4000/cart/:customers_id', {
                     method: 'POST',
                     body: JSON.stringify({ 
                         customers_id: 1, //send the dynamic information in the body to the BE
@@ -50,7 +52,7 @@ export default function Home() {
                 .then((product) => {
                     console.log('The cart include: ' + JSON.stringify (product));
                     setCart(product);
-                    alert('Product successfully added to cart'); //Showing up in Firefox but not showing the mesage. Chrome ok
+                    alert('Product successfully added to cart'); //Showing up in Firefox but not showing the message. Chrome ok
                 })
             } catch(err) {
                 console.log('Error adding to cart ' + err);
@@ -74,7 +76,7 @@ export default function Home() {
                 {/*{console.log('The array contains: ', product)}*/}
                 
                 {loading ? (
-                    <p>Loading...</p>
+                    <p>Products loading...</p>
                 ) : (
                 <>
                 <div className="Spanish">
@@ -95,7 +97,7 @@ export default function Home() {
                         <h6>£{product[2].price}</h6>
                     </div>
                     <div className="CartBtn">
-                        <Button variant="light">Add to Cart</Button>
+                        <Button variant="light" onClick={() => addToCart(2, 1)}>Add to Cart</Button>
                     </div>
                 </div>
 
@@ -106,7 +108,7 @@ export default function Home() {
                         <h6>£{product[1].price}</h6>
                     </div>
                     <div className="CartBtn">
-                        <Button variant="light">Add to Cart</Button>
+                        <Button variant="light" onClick={() => addToCart(3, 1)}>Add to Cart</Button>
                     </div>
                 
                 </div>

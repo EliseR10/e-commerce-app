@@ -399,7 +399,7 @@ pool.connect((err) => {
             await pool.query('COMMIT');
 
             res.json({ message: 'Order placed successfully', orders_id, totalAmount });
-
+            console.log('Order placed successfully! Thank you!');
         } catch (err) {
             //Rollback in case of error
             console.error('Error placing your order:', err);
