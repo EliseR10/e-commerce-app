@@ -1,4 +1,4 @@
-/*Welcome Page*/
+/*WELCOME PAGE*/
 .welcomePage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;
@@ -36,7 +36,7 @@
   color: black;
 }
 
-/*Home Page*/
+/*HOME PAGE*/
 .homePage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;
@@ -106,7 +106,7 @@
   background: white;
 }
 
-/*Cart Page*/
+/*CART PAGE*/
 .cartPage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;
@@ -186,7 +186,7 @@ a#titleCart h3 {
   background: white;
 }
 
-/*Thank You Page*/
+/*THANK YOU PAGE*/
 .thankYouPage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;
@@ -214,7 +214,7 @@ a#titleCart h3 {
   margin-top: 20px;
 }
 
-/*Account page*/
+/*ACCOUNT PAGE*/
 .accountPage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;
@@ -225,6 +225,7 @@ a#titleCart h3 {
 
 .yourAccount {
   height: 80vh;
+  /*border: 1px solid green;*/
 }
 
 .logout {
@@ -233,11 +234,11 @@ a#titleCart h3 {
 }
 
 .infoAccount {
-  height: 55vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid red;
+  /*border: 1px solid orange;*/
 }
 
 .input {
@@ -281,18 +282,21 @@ a#titleCart h3 {
 
 .previousOrder {
   margin-top: 20px;
-  height: 15vh;
-  border: 1px solid black;
+  height: 30vh;
+  margin-bottom: 50px;
+  /*border: 1px solid black;*/
 }
 
 .order1 {
-  display: flex;
-  justify-content: space-between;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
 }
 
-.yourOrder {
-  color: black;
-  font-style: italic;
+#order1Bin {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
 }
 
 .binOrder {
@@ -316,7 +320,7 @@ button.deleteAccountBtn:hover {
   background: white;
 }
 
-/*Add a Product page*/
+/*ADD A PRODUCT PAGE*/
 .AddProductPage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;
@@ -370,7 +374,7 @@ button.validateProductBtn:hover {
   background: white;
 }
 
-/*Admin Page*/
+/*ADMIN PAGE*/
 .adminAccountPage {
   min-height: 100vh; /*ensure full viewport height*/
   margin: 0;

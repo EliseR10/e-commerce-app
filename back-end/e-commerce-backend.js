@@ -226,7 +226,7 @@ pool.connect((err) => {
     /*Display account details*/
     app.get('/account/:id', async (req, res) => {
         try {
-                const result = await pool.query('SELECT customers_username, customers_phone_number, password FROM account');
+                const result = await pool.query('SELECT id, customers_username, customers_phone_number, password FROM account');
                 res.json(result.rows);
                 console.log(result.rows);
         } catch (err) {
@@ -283,7 +283,7 @@ pool.connect((err) => {
             
         } catch (err) {
             console.error('Error updating the account', err);
-            res.status(500).send('Server error');
+            res.status(500).send('Server error', err);
         };
     });
     
@@ -313,16 +313,20 @@ pool.connect((err) => {
 
     /*ORDER API ENDPOINTS*/
     /*Display orders. Front-end: account page*/
+    /*Below in my Select:    
+        MAX ensures one order date per orders.id
+        SUM keeps the total amount as it is
+        COUNT counts the total number of products in the order*/
     app.get('/orders/:customers_id', async (req, res) => {
         const { customers_id } = req.params;
 
         try {
             const query = `
             SELECT 
-                orders.id, 
-                orders.order_date, 
-                orders.total_order_amount, 
-                order_items.product_id 
+                orders.id AS orders_id, 
+                MAX(orders.order_date) AS order_date, 
+                SUM(orders.total_order_amount) AS total_order_amount, 
+                COUNT(order_items.product_id) AS total_amount_products 
             FROM 
                 orders 
             JOIN 
@@ -331,7 +335,13 @@ pool.connect((err) => {
                 orders.id = order_items.orders_id
             WHERE
                 orders.customers_id = $1
-            `
+            GROUP BY 
+                orders.id
+            ORDER BY
+                orders.id DESC
+            LIMIT 3;
+            `;
+
             const result = await pool.query(query, [customers_id]);
             res.json(result.rows);
             console.log(result.rows);
