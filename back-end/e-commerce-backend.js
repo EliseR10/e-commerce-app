@@ -86,6 +86,20 @@ pool.connect((err) => {
         }
     });
 
+    /*Get a specific product details*/
+    app.get('/product/:id', async (req, res) => {
+        const {id} = req.params;
+
+        try {
+            const result = await pool.query(`SELECT id, name, description, price FROM product WHERE id = $1`, [id]);
+            res.json(result.rows);
+            console.log(result.rows);
+        } catch (err) {
+            console.error('Error retrieving products', err);
+            res.status(500).send('Server error');
+        }
+    });
+
     /*Delete the product*/
     app.delete('/product/:id', async (req, res) => {
         const { id } = req.params;

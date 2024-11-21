@@ -293,6 +293,14 @@ a#titleCart h3 {
   justify-content: center;
 }
 
+#orderList{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+   /*border: 1px solid black;*/
+}
+
 #order1Bin {
   display: flex;
   justify-content: center;
@@ -443,22 +451,37 @@ button.validateProductBtn:hover {
 
 .product1 {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /*border: 1px solid black;*/
 }
 
-.product2 {
+.adminDisplay {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  /*border: 1px solid pink;*/
 }
 
-.product3 {
-  display: flex;
-  justify-content: space-between;
+.adminProductData {
+  flex: 1; /*ensure the name takes up the available space*/
+  text-align: left; /*align the text on the left*/
+  margin-right: 1rem;
+  /*border: 1px solid purple;*/
 }
 
 .modifyProduct {
+  text-align: center;
   color: black;
   font-style: italic;
+  margin-right: 10px;
+  text-decoration: underline;
+}
+
+.btn.modifyProduct:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 .binProduct {

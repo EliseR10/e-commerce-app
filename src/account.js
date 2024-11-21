@@ -198,9 +198,9 @@ export default function Account() {
                                     <h6><strong>Order ID:</strong> {item.orders_id} / <strong>Total Amount:</strong> £{item.total_order_amount}</h6>
                                     <h6><strong>Date of Order:</strong> {item.order_date}</h6>
 
-                                    <div id="order1Bin">
+                                    {/*<div id="order1Bin">*/}
                                         <Button variant="light" className="binOrder"><FontAwesomeIcon icon={faTrashCan} onClick={() => deleteOrder(item.orders_id)}/></Button>
-                                    </div>
+                                    {/*</div>*/}
                                 </div>  
                             ))}
                             

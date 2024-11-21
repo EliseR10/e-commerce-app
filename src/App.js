@@ -10,6 +10,7 @@ import ThankYou from './thankYou';
 import Account from './account';
 import AddProduct from './addProduct';
 import AdminAccount from './adminAccount';
+import ModifyProduct from './modifyProduct';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -20,7 +21,12 @@ const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/thankYou" element={ <ThankYou/> }/>
   <Route path="/account" element={ <Account/>} />
   <Route path="/addProduct" element={ <AddProduct/>} />
-  <Route path="/adminAccount" element={ <AdminAccount/>} />
+  <Route>
+    <Route path="/adminAccount" element={ <AdminAccount/>} />
+    <Route path="/modifyProduct/:id" element={ <ModifyProduct/>} />
+  </Route>
+  
+  
   </>
   
 ))
