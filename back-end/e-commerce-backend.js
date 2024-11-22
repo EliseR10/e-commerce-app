@@ -40,7 +40,7 @@ pool.connect((err) => {
     /*PRODUCT DATA API ENDPOINT*/
     /*Create / Update a product details. Front-end: "validate" button from addAProduct page*/
     app.post('/product', async (req, res) => {
-        const { id, name, description, price } = req.body;
+        const {id, name, description, price } = req.body;
 
         try {
             const query = `

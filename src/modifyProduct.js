@@ -39,24 +39,25 @@ export default function ModifyProduct() {
         const {name, value } = event.target; //get the name and value of the input
         setProduct((prevData) => {
             const updatedProduct = [...prevData]; //spread the previous data to retain other properties
-            updatedProduct[0] = {...updateProduct[0], [name] : value }; //update the specific property or default to empty string if value is falty
+            updatedProduct[0] = {...prevData[0], [name] : value || prevData[0][name] || ""}; //making sure if value is falty, it doesn't overwrite the previous data
             return updatedProduct;
         });
         console.log('Input updated: ', name, value);
     };
     
-    const updateProduct = (id, name, description, price) => {
+    const updateProduct = ({id}, name, description, price) => {
         try {
-            fetch('http://localhost:4000/product', {
+            fetch(`http://localhost:4000/product`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: product[0].id,
-                    name: product[0].name,
-                    description: product[0].description,
-                    price: product[0].price
+/*Here the ? ensure that JavaScript checks if product[0] exist and return undefined if doesn't exist, instead of a runtime error*/
+                    id: product[0]?.id || "", 
+                    name: product[0]?.name || "",
+                    description: product[0]?.description || "",
+                    price: product[0]?.price || ""
                 }),
             })
             .then((response) => response.json())
@@ -80,6 +81,7 @@ export default function ModifyProduct() {
             setLoading(false);
         }
     }
+
 
     return (
         <Container className="AddProductPage">
@@ -106,22 +108,22 @@ export default function ModifyProduct() {
                 <div className="ProductDetails">
                     <label id="productId" htmlFor="productId">Product ID</label>
                     <br></br>
-                    <input className="input" type="text" name="productId" value={product[0].id} readOnly></input>
+                    <input className="input" type="text" name="id" value={product[0].id} readOnly></input>
                     <br></br>
 
                     <label id="productName" htmlFor="productName">Name of the product</label>
                     <br></br>
-                    <input className="input" type="text" name="productName" defaultValue={product[0].name} onChange={handleChange}></input>
+                    <input className="input" type="text" name="name" defaultValue={product[0].name} onChange={handleChange}></input>
                     <br></br>
 
                     <label id="productDescription" htmlFor="productDescription">Description</label>
                     <br></br>
-                    <textarea className="input" type="text" name="productDescription" defaultValue={product[0].description} onChange={handleChange}></textarea>
+                    <textarea className="input" type="text" name="description" defaultValue={product[0].description} onChange={handleChange}></textarea>
                     <br></br>
 
                     <label id="productPrice" htmlFor="productPrice">Price in £</label>
                     <br></br>
-                    <input className="input" type="text" name="productPrice" defaultValue={product[0].price} onChange={handleChange}></input>
+                    <input className="input" type="text" name="price" defaultValue={product[0].price} onChange={handleChange}></input>
                     <br></br>
                 
                 </div>
@@ -132,7 +134,7 @@ export default function ModifyProduct() {
                 </>
                 )}
                 <div className="validateBtn">
-                    <Button variant="light" className="validateProductBtn" onClick={() => updateProduct(product[0].id, product[0].name, product[0].description,product[0].price)}>Validate</Button>
+                    <Button variant="light" className="validateProductBtn" onClick={() =>{console.log("Product data: ", product[0]); updateProduct(product[0], product[0].id)}}>Validate</Button>
                 </div>
             </div>
         </Container>
