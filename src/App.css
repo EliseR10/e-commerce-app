@@ -396,10 +396,9 @@ button.validateProductBtn:hover {
 }
 
 .infoAdminAccount {
-  height: 45vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
 }
 
 .input {
@@ -451,7 +450,10 @@ button.validateProductBtn:hover {
 
 .product1 {
   display: flex;
+  height: 20vh;
   flex-direction: column;
+  overflow-y: scroll;
+  margin-bottom: 15px;
   /*border: 1px solid black;*/
 }
 

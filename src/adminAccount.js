@@ -100,6 +100,36 @@ export default function AdminAccount() {
         }
     }
 
+    const deleteProduct = (id) => {
+        try {
+            fetch(`http://localhost:4000/product/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+            })
+            .then((response) => response.json())
+            .then(() => {
+                return fetch('http://localhost:4000/product', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                })    
+            })
+            .then((response) => response.json())
+            .then((product) => {
+                console.log('The products has been deleted');
+                setProduct(product);
+                setLoading(false);
+                alert('The product has been deleted.');
+            })
+        } catch (err) {
+            console.log('Error deleting the product ', err);
+        }
+    }
+
+
     return (
         <Container className="accountPage">
             <div className="header">
@@ -162,7 +192,7 @@ export default function AdminAccount() {
                                 <div key={item.name} className="adminDisplay">
                                     <h6 className="adminProductData"><strong>{item.name}</strong></h6>
                                     <Link to={`/modifyProduct/${item.id}`}><Button variant="black-link" className="modifyProduct">Modify this product</Button></Link>
-                                    <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
+                                    <Button variant="light" className="binProduct" onClick={() => deleteProduct(item.id)}><FontAwesomeIcon icon={faTrashCan} /></Button>
                                 </div>
                             ))}
                                 
@@ -172,20 +202,6 @@ export default function AdminAccount() {
                         )
                         )}
                         </>
-                        {/*<p>Add name from database</p>
-                        <a href="#" className="modifyProduct">Modify this product</a>
-                        <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
-                    </div>
-                    <div className="product2">
-                        <p>Add name from database</p>
-                        <a href="#" className="modifyProduct">Modify this product</a>
-                        <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
-                    </div>
-                    <div className="product3">
-                        <p>Add name from database</p>
-                        <a href="#" className="modifyProduct">Modify this product</a>
-                        <Button variant="light" className="binProduct"><FontAwesomeIcon icon={faTrashCan} /></Button>
-                    </div>*/}
                     
                     </div>
                 </div>

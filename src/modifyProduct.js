@@ -134,7 +134,7 @@ export default function ModifyProduct() {
                 </>
                 )}
                 <div className="validateBtn">
-                    <Button variant="light" className="validateProductBtn" onClick={() =>{console.log("Product data: ", product[0]); updateProduct(product[0], product[0].id)}}>Validate</Button>
+                    <Link to="/adminAccount"><Button variant="light" className="validateProductBtn" onClick={() =>{console.log("Product data: ", product[0]); updateProduct(product[0], product[0].id)}}>Validate</Button></Link>
                 </div>
             </div>
         </Container>
