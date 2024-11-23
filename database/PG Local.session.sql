@@ -1,5 +1,2 @@
-DELETE FROM orders
-WHERE id = 4;
-
-DELETE FROM orders
-WHERE id = 5;
+DELETE FROM product
+WHERE id = 2;
