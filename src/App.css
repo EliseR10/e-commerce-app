@@ -68,10 +68,11 @@
 }
 
 .offer {
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-y: scroll;
 }
 
 .SpanishTitle {
@@ -98,6 +99,7 @@
 .CartBtn {
   display: flex;
   justify-content: right;
+  margin-bottom: 15px;
 }
 
 /*be more specific to target the button out of React Bootstrap rules*/

@@ -1,2 +1,3 @@
-DELETE FROM product
-WHERE id = 2;
+DELETE FROM account
+WHERE id = 3;
+

@@ -68,7 +68,7 @@ export default function AdminAccount() {
     account to have the same as cart: update and display the updates*/
     const updateAdminAccount = (id) => {
         try {
-            fetch(`http://localhost:4000/account/1`, {
+            fetch(`http://localhost:4000/account/2`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     customers_phone_number: data[0]?.customers_phone_number || "",
@@ -78,7 +78,12 @@ export default function AdminAccount() {
                     'Content-Type':'application/json'
                 },
             })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to update account: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
             .then(() => {
                 return fetch(`http://localhost:4000/account/${id}`, {
                     method: 'GET',
@@ -87,7 +92,12 @@ export default function AdminAccount() {
                     }
                 });
             })
-        .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch updated account: ${response.status} ${response.statusText}`);   
+                }
+                return response.json();
+            })
             .then((data) => {
                 console.log('Your account has been updated' + JSON.stringify(data));
                 setData(data);
@@ -150,7 +160,7 @@ export default function AdminAccount() {
                 <>
                 
                 <div>
-                {data && data.length > 0 ? (
+                {data && data.length > 0 ? ( 
                 <div className="infoAdminAccount">
                 
                     <label id="usernameInput" htmlFor="username">Username</label>

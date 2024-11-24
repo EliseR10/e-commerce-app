@@ -71,49 +71,31 @@ export default function Home() {
             </div>
 
             <div className="offer">
-                {/*Here you might need to link the database with the front-end and use
-                the name, description and price*/}
-                {/*{console.log('The array contains: ', product)}*/}
+            {loading ? (
+                <p>Products loading...</p>
+            ) : (
                 
-                {loading ? (
-                    <p>Products loading...</p>
-                ) : (
+            Array.isArray(product) && product.length > 0 ? (
                 <>
-                <div className="Spanish">
+                {product.map((item) => (
+                <div className="Spanish" key={item.product_id}>
                     <div className="SpanishTitle">
-                        <h4>{product[0].name}</h4>
-                        <h6>{product[0].description} <br></br></h6>
-                        <h6>£{product[0].price}</h6>
+                        <h4>{item.name}</h4>
+                        <h6>{item.description} <br></br></h6>
+                        <h6>£{item.price}</h6>
                     </div>
                     <div className="CartBtn">
-                        <Button variant="light" onClick={() => addToCart(1, 1)}>Add to Cart</Button>
+                        <Button variant="light" onClick={() => addToCart(item.id, 1)}>Add to Cart</Button>
                     </div>
                 </div>
-
-                <div className="French">
-                    <div className="FrenchTitle">
-                        <h4>{product[2].name}</h4>
-                        <h6>{product[2].description} <br></br></h6>
-                        <h6>£{product[2].price}</h6>
-                    </div>
-                    <div className="CartBtn">
-                        <Button variant="light" onClick={() => addToCart(2, 1)}>Add to Cart</Button>
-                    </div>
-                </div>
-
-                <div className="Bulgarian">
-                    <div className="BulgarianTitle">
-                        <h4>{product[1].name}</h4>
-                        <h6>{product[1].description} <br></br></h6>
-                        <h6>£{product[1].price}</h6>
-                    </div>
-                    <div className="CartBtn">
-                        <Button variant="light" onClick={() => addToCart(3, 1)}>Add to Cart</Button>
-                    </div>
+                ))}
                 
-                </div>
                 </>
-                )}
+                ) : (
+                    <h4>No product available for sales.</h4>
+                )
+            )}
+            
             </div>
         </Container>
     );

@@ -72,7 +72,7 @@ export default function Account() {
     account to have the same as cart: update and display the updates*/
     const updateAccount = (id) => {
         try {
-            fetch(`http://localhost:4000/account/1`, {
+            fetch(`http://localhost:4000/account/2`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     customers_phone_number: data[0]?.customers_phone_number || "",
@@ -82,8 +82,13 @@ export default function Account() {
                     'Content-Type':'application/json'
                 },
             })
-            .then((response) => response.json())
-            .then(() => {
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to update account: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+                .then(() => {
                 return fetch(`http://localhost:4000/account/${id}`, {
                     method: 'GET',
                     headers: {
@@ -91,13 +96,18 @@ export default function Account() {
                     }
                 });
             })
-        .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch updated account: ${response.status} ${response.statusText}`);   
+                }
+                return response.json();
+            })
             .then((data) => {
                 console.log('Your account has been updated' + JSON.stringify(data));
                 setData(data);
                 setLoading(false);
                 alert('Your account has been updated, thank you!');
-            })
+                })
 
         } catch (err) {
             console.log('Error updating your account detail ', err);
@@ -138,6 +148,25 @@ export default function Account() {
         }
     }
 
+    const deleteAccount = (id) => {
+        try {
+            fetch(`http://localhost:4000/account/2`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Your account has been deleted');
+                setData(data);
+                alert('Your account has been deleted.');
+            })
+        } catch (err) {
+            console.log('Error deleting your account ', err);
+        }
+    }
+
     return (
         <Container className="accountPage">
             <div className="header">
@@ -152,10 +181,11 @@ export default function Account() {
             <div className="yourAccount">
                 <h3 id="yourAccountTitle">Your Account</h3>
                 
-                
+                <>
                 {loading ? (
                         <p>Account loading</p>
                 ) : (
+                    Array.isArray(data) && data.length > 0 ? (
                 <>
                 <div className="infoAccount">
                     
@@ -179,6 +209,11 @@ export default function Account() {
                     <Button className="btn1" variant="light" onClick={() => updateAccount(data.id)}>Save</Button>
 
                 </div>
+                </>
+                ) : (
+                    <h6>No account data available.</h6>
+                ))}
+                </>
 
                 <div className="previousOrder">
                     <h4>Your orders</h4>
@@ -198,9 +233,7 @@ export default function Account() {
                                     <h6><strong>Order ID:</strong> {item.orders_id} / <strong>Total Amount:</strong> £{item.total_order_amount}</h6>
                                     <h6><strong>Date of Order:</strong> {item.order_date}</h6>
 
-                                    {/*<div id="order1Bin">*/}
-                                        <Button variant="light" className="binOrder"><FontAwesomeIcon icon={faTrashCan} onClick={() => deleteOrder(item.orders_id)}/></Button>
-                                    {/*</div>*/}
+                                    <Button variant="light" className="binOrder"><FontAwesomeIcon icon={faTrashCan} onClick={() => deleteOrder(item.orders_id)}/></Button>
                                 </div>  
                             ))}
                             
@@ -208,15 +241,14 @@ export default function Account() {
                         ) : (
                             <h6>You have no previous order.</h6>
                         )    
-                        )}
-                        </>                      
+                        )}    
+                        </>                  
                     </div>
+                    
                 </div>
-                </>
-                )}
-
+                
                 <div className="deleteBtn">
-                    <Button variant="light" className="deleteAccountBtn">Delete my account</Button>
+                    <Link to="/"><Button variant="light" className="deleteAccountBtn" onClick={() => deleteAccount(data.id)}>Delete my account</Button></Link>
                 </div>
             </div>
         </Container>
