@@ -18,12 +18,13 @@ export default function Cart() {
         try {
             fetch('http://localhost:4000/cart/1', {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
             })
 
-            .then((response) => response.json())
+            .then(response => response.json())
 
             .then((cart) => {
                 console.log('The cart includes ' + JSON.stringify(cart));
@@ -45,6 +46,7 @@ export default function Cart() {
         
             fetch(`http://localhost:4000/cart/1/${product_id}`, {
                 method: 'PUT',
+                credentials: 'include',
                 body: JSON.stringify({
                     quantity: parseInt(quantity, 10)
                     //quantity: {newQuantity}
@@ -57,6 +59,7 @@ export default function Cart() {
             .then (() => {
                 return fetch('http://localhost:4000/cart/1', {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     }
@@ -79,6 +82,7 @@ export default function Cart() {
         try {
             fetch(`http://localhost:4000/cart/1/${product_id}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
@@ -87,6 +91,7 @@ export default function Cart() {
             .then (() => {
                 return fetch('http://localhost:4000/cart/1', {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     }
@@ -108,6 +113,7 @@ export default function Cart() {
         try {
                 fetch('http://localhost:4000/orders/1', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     }

@@ -9,19 +9,19 @@ export default function ModifyProduct() {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation(); //detect route changes
-    
 
     useEffect(() => {
         try {
             /*Fetch to display product data*/
             fetch(`http://localhost:4000/product/${id}`, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
             })
         
-            .then((response) => response.json())
+            .then(response => response.json())
 
             .then ((product) => {
                 console.log('The products are ' + JSON.stringify(product));
@@ -49,6 +49,7 @@ export default function ModifyProduct() {
         try {
             fetch(`http://localhost:4000/product`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -64,6 +65,7 @@ export default function ModifyProduct() {
             .then(() => {
                 return fetch(`http://localhost:4000/product/${id}`, {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     },

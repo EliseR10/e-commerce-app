@@ -14,16 +14,17 @@ export default function Account() {
     const [loading, setLoading] = useState(true);
     const location = useLocation(); //detect route changes
 
-    useEffect(() => {
+    useEffect((id) => {
         try {
             /*Fetch to display account data*/
-            fetch('http://localhost:4000/account/:id', {
+            fetch(`http://localhost:4000/account/${id}`, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-            .then((response) => response.json())
+            .then(response => response.json())
             .then((data) => {
                 console.log('Account data is' + JSON.stringify(data));
                 setData(data);
@@ -32,8 +33,9 @@ export default function Account() {
             })
 
             /*Fetch to display previous order*/
-            fetch('http://localhost:4000/orders/1', {
+            fetch(`http://localhost:4000/orders/${id}`, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
@@ -72,8 +74,9 @@ export default function Account() {
     account to have the same as cart: update and display the updates*/
     const updateAccount = (id) => {
         try {
-            fetch(`http://localhost:4000/account/2`, {
+            fetch(`http://localhost:4000/account/${id}`, {
                 method: 'PUT',
+                credentials: 'include',
                 body: JSON.stringify({
                     customers_phone_number: data[0]?.customers_phone_number || "",
                     password: data[0]?.password,
@@ -91,6 +94,7 @@ export default function Account() {
                 .then(() => {
                 return fetch(`http://localhost:4000/account/${id}`, {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     }
@@ -118,6 +122,7 @@ export default function Account() {
         try {
             fetch(`http://localhost:4000/orders/${id}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
@@ -126,6 +131,7 @@ export default function Account() {
             .then(() => {
                 return fetch(`http://localhost:4000/orders/1`, {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     }
@@ -152,6 +158,7 @@ export default function Account() {
         try {
             fetch(`http://localhost:4000/account/2`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 }

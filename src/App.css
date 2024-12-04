@@ -32,8 +32,12 @@
 }
 
 #registerLink {
-  text-decoration: none;
+  text-decoration: underline;
   color: black;
+}
+
+#registerLink:hover {
+  cursor: pointer;
 }
 
 /*HOME PAGE*/

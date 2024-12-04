@@ -5,9 +5,6 @@ import {Container, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 export default function AddProduct() {
-    /*
-    3. validate empty the inputs */
-
     const [product, setProduct] = useState([]);
 
     /*Get the value from the input*/
@@ -33,6 +30,7 @@ export default function AddProduct() {
             
             fetch('http://localhost:4000/product', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -44,6 +42,7 @@ export default function AddProduct() {
                 }),
             })
             .then((response) => response.json())
+            
             .then((product) => {
                 console.log('The new product has been added ' + JSON.stringify(product));
                 setProduct(product);

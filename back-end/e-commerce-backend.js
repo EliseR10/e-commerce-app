@@ -1,42 +1,66 @@
 /*Express set-up*/
     const express = require('express');
     const app = express();
-    /*That is for PostgreSQL to link to back-end*/
-    const { Pool } = require('pg');
+    /*That is for PostgreSQL to link to back-end
+    const { Pool } = require('pg');*/
     const PORT = 4000;
     /*To load environment variables from .env file*/
     require('dotenv').config(); 
     /*Cors request*/
     const cors = require('cors');
+    /*Bcrypt to hash password before storing in database*/
+    const bcrypt = require('bcrypt');
+    const session = require('express-session');
+    const passport = require('./passport-config');
+    const pool = require('./db');
+    const authRoutes = require('./auth');
 
-/*Connect to database*/
-const pool = new Pool ({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: 5432
-});
+/*Middleware for CORS*/
+app.use(cors({
+    origin: 'http://localhost:3000',
+    method: 'GET, POST, PUT, DELETE',
+    credentials: true, //allow cookies session
+}));
 
-//Test the connection
-pool.connect((err) => {
-    if (err) {
-        console.error('Error connecting to the database', err);
-    } else {
-        console.log('Connected to the PostgreSQL database');
+/*Middleware to parse JSON*/
+app.use(express.json());
+
+/*Set up session management*/
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false, //this as to be true if in production
+        httpOnly: true, 
+        maxAge: 30 * 60 * 1000 //session time out after 30 minutes
+    },
+}));
+
+/*Initialize passport and restore session*/
+app.use(passport.initialize());
+app.use(passport.session());
+
+/*Use authentication routes*/
+app.use('/auth', authRoutes);
+
+/*Middleware to protect all other routes
+app.use((req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
     }
+    console.log('Not authenticated');
+    res.redirect('/login');
+});*/
+
+/*Check what req.isAuthenticated() returns for the failing request*/
+app.use((req, res, next) => {
+    console.log('Is authenticated: ', req.isAuthenticated());
+    next();
 });
+
 
 /*Writing routes*/
-    /*Middleware to parse JSON*/
-    app.use(express.json());
-
-    /*Middleware for CORS*/
-    app.use(cors({
-        origin: 'http://localhost:3000',
-        method: 'GET, POST, PUT, DELETE',
-    }));
-
     /*PRODUCT DATA API ENDPOINT*/
     /*Create / Update a product details. Front-end: "validate" button from addAProduct page*/
     app.post('/product', async (req, res) => {
@@ -235,7 +259,59 @@ pool.connect((err) => {
     
 
     /*ACCOUNT API ENDPOINTS*/
-    /*Create an account*/
+    /*Create an account. Front-end: register button*/
+    app.post('/account', async (req, res) => {
+        const { customers_username, password } = req.body;
+
+        try {
+            /*Check that input are valid*/
+            if (!customers_username || !password) {
+                return res.status(400).json({message: 'Username or password are required'});
+            }
+
+            if (typeof password !== 'string') {
+                return res.status(400).json({message: 'Password must be a string.'});
+            }
+
+            /*Check first if the account already exist*/
+            const checkAccount = `SELECT * FROM account WHERE customers_username = $1`;
+            const checkAccountResult = await pool.query(checkAccount, [customers_username]);
+
+            if (checkAccountResult.rows.length > 0) {
+                return res.status(400).json({message: 'Account already exists'});
+            }
+
+            /*Hash the password*/
+            /*Here 10 is determining the number of hashing*/
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+            const query = `
+                INSERT INTO account (customers_username, password, role_id)
+                VALUES ($1, $2, 1)
+                RETURNING customers_id, customers_username;
+            `;
+
+            const result = await pool.query(query, [customers_username, hashedPassword]);
+            const newUser = result.rows[0];
+
+            /*Log the user in after account is created*/
+            if (newUser) {
+                req.login(newUser, (err) => {
+                if (err) {
+                    return res.status(500).json({message: 'Login failed after registration.'});
+                }
+                return res.json({success: true, message: 'Account created and logged in successfully'});
+                
+            });
+            }
+            console.log('Account created!');
+
+        } catch (err) {
+            console.log('Error creating a new account', err);
+            res.status(500).send('Server error');
+        }
+    });
 
     /*Display account details*/
     app.get('/account/:id', async (req, res) => {
@@ -482,3 +558,4 @@ pool.connect((err) => {
         console.log(`Server is listening on port ${PORT}`)
     });
 
+    //module.exports = pool;

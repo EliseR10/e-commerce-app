@@ -19,6 +19,7 @@ export default function AdminAccount() {
             /*Fetch to display account data*/
             fetch('http://localhost:4000/account/:id', {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -34,12 +35,13 @@ export default function AdminAccount() {
             /*Fetch to display product data*/
             fetch('http://localhost:4000/product', {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
             })
         
-            .then((response) => response.json())
+            .then(response => response.json())
 
             .then ((product) => {
                 console.log('The products are ' + JSON.stringify(product));
@@ -70,6 +72,7 @@ export default function AdminAccount() {
         try {
             fetch(`http://localhost:4000/account/2`, {
                 method: 'PUT',
+                credentials: 'include',
                 body: JSON.stringify({
                     customers_phone_number: data[0]?.customers_phone_number || "",
                     password: data[0]?.password,
@@ -87,6 +90,7 @@ export default function AdminAccount() {
             .then(() => {
                 return fetch(`http://localhost:4000/account/${id}`, {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     }
@@ -114,6 +118,7 @@ export default function AdminAccount() {
         try {
             fetch(`http://localhost:4000/product/${id}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
@@ -122,6 +127,7 @@ export default function AdminAccount() {
             .then(() => {
                 return fetch('http://localhost:4000/product', {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type':'application/json'
                     },

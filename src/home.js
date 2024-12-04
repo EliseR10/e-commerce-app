@@ -15,13 +15,13 @@ export default function Home() {
         try {
             fetch('http://localhost:4000/product', {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type':'application/json'
                 },
             })
         
-            .then((response) => response.json())
-
+            .then(response => response.json())
             .then ((product) => {
                 console.log('The products are ' + JSON.stringify(product));
                 setProduct(product);
@@ -37,8 +37,9 @@ export default function Home() {
 
         const addToCart = (product_id, quantity) => {
             try {
-                fetch('http://localhost:4000/cart/:customers_id', {
+                fetch(`http://localhost:4000/cart/:customers_id`, {
                     method: 'POST',
+                    credentials: 'include',
                     body: JSON.stringify({ 
                         customers_id: 1, //send the dynamic information in the body to the BE
                         product_id: product_id,
@@ -55,7 +56,7 @@ export default function Home() {
                     alert('Product successfully added to cart'); //Showing up in Firefox but not showing the message. Chrome ok
                 })
             } catch(err) {
-                console.log('Error adding to cart ' + err);
+                console.log('Error adding to cart ', err);
             }
         };
         
