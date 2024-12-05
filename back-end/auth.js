@@ -36,10 +36,20 @@ router.post('/login', (req, res, next) => {
 });
 
 /*Logging out*/
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
     req.logout(err => {
-        if (err) return next(err);
-        res.redirect("/login");
+        if (err) {
+            return res.status(500).json({message: 'Error logging out'});
+        }
+
+        //clear cookie once logged out
+        res.clearCookie('connect.sid', {path: '/'});
+        
+        return res.json({
+            success: true,
+            message: 'Logged out successfully',
+            isAuthenticated: false,
+        });
     });
     
 })

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import { AuthContext } from './AuthContext';
 
 //To import icons from FontAwesome
@@ -14,8 +14,9 @@ export default function Account() {
     const [order, setOrder] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation(); //detect route changes
-    const {user} = useContext(AuthContext);
+    const {user, setUser, setIsAuthenticated} = useContext(AuthContext);
     const { customers_id, id} = user;
+    const navigate = useNavigate();
 
     useEffect(() => {
         try {
@@ -177,6 +178,28 @@ export default function Account() {
         }
     }
 
+    const logOut = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/auth/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setIsAuthenticated(false);
+                setUser(null);
+                navigate('/');
+                console.log('Logged out successfully');
+            } else {
+                console.log('Logout failed');
+            }
+        } catch(error) {
+            console.error('Error during logout: ', error);
+        }
+    }
+
     return (
         <Container className="accountPage">
             <div className="header">
@@ -185,7 +208,7 @@ export default function Account() {
                 </div>
 
                 <Link to="/cart"><Button variant="light" className="cart">Cart</Button></Link>
-                <Button variant="light" className="logout">Logout</Button>
+                <Button variant="light" className="logout" onClick={logOut}>Logout</Button>
             </div>
 
             <div className="yourAccount">
