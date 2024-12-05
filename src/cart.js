@@ -30,7 +30,7 @@ export default function Cart() {
             .then(response => response.json())
 
             .then((cart) => {
-                console.log('The cart includes ' + JSON.stringify(cart));
+                //console.log('The cart includes ' + JSON.stringify(cart));
                 setDisplayCart(cart);
                 setLoading(false);
             })
@@ -70,7 +70,7 @@ export default function Cart() {
             })
             .then((response) => response.json())
             .then((cart) => {
-                console.log('The product has been updated' + JSON.stringify(cart));
+                //console.log('The product has been updated' + JSON.stringify(cart));
                 setDisplayCart(cart);
                 console.log('Latest cart update: ' + JSON.stringify(cart));
                 setLoading(false);
@@ -102,7 +102,7 @@ export default function Cart() {
             })
             .then((response) => response.json())
             .then((cart) => {
-                console.log('The item has been deleted ' + JSON.stringify(cart));
+                //console.log('The item has been deleted ' + JSON.stringify(cart));
                 setDisplayCart(cart);
                 setLoading(false);
             })

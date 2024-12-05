@@ -24,7 +24,7 @@ export default function ModifyProduct() {
             .then(response => response.json())
 
             .then ((product) => {
-                console.log('The products are ' + JSON.stringify(product));
+                //console.log('The products are ' + JSON.stringify(product));
                 setProduct(product);
                 setLoading(false);
             })
@@ -73,7 +73,7 @@ export default function ModifyProduct() {
             })
             .then((response) => response.json())
             .then((product) => {
-                console.log('Your product has been updated ' + JSON.stringify(product));
+                //console.log('Your product has been updated ' + JSON.stringify(product));
                 setProduct(product);
                 setLoading(false);
                 alert('Your product has been updated!');

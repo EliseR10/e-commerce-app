@@ -81,7 +81,7 @@ export default function Welcome() {
             })
             
             const data = await response.json();
-            console.log('Register response:', data);
+            //console.log('Register response:', data);
 
             if (data.success) {
                 setIsAuthenticated(true);

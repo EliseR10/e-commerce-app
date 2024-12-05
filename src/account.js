@@ -30,9 +30,9 @@ export default function Account() {
             })
             .then(response => response.json())
             .then((data) => {
-                console.log('Account data is' + JSON.stringify(data));
+                //console.log('Account data is' + JSON.stringify(data));
                 setData(data);
-                console.log("Making sure the data is saved : ", data);
+                //console.log("Making sure the data is saved : ", data);
                 setLoading(false);
             })
 
@@ -50,7 +50,7 @@ export default function Account() {
                     ...order,
                     order_date: order.order_date.slice(0, 10),
                 }));
-                console.log('The previous orders are ' + JSON.stringify(order));
+                //console.log('The previous orders are ' + JSON.stringify(order));
                 setOrder(formattedOrder);
                 setLoading(false);
             })
@@ -111,7 +111,7 @@ export default function Account() {
                 return response.json();
             })
             .then((data) => {
-                console.log('Your account has been updated' + JSON.stringify(data));
+                //console.log('Your account has been updated' + JSON.stringify(data));
                 setData(data);
                 setLoading(false);
                 alert('Your account has been updated, thank you!');
@@ -147,7 +147,7 @@ export default function Account() {
                     ...order,
                     order_date: order.order_date.slice(0, 10),
                 }));
-                console.log('The order has been cancelled. Here previous order: ' + JSON.stringify(order));
+                //console.log('The order has been cancelled. Here previous order: ' + JSON.stringify(order));
                 alert('The order has been cancelled.');
                 setOrder(formattedOrder);
                 setLoading(false);

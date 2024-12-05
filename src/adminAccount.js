@@ -30,7 +30,7 @@ export default function AdminAccount() {
             })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Admin account data is' + JSON.stringify(data));
+                //console.log('Admin account data is' + JSON.stringify(data));
                 setData(data);
                 console.log("Making sure the data is saved : ", data);
                 setLoading(false);
@@ -48,7 +48,7 @@ export default function AdminAccount() {
             .then(response => response.json())
 
             .then ((product) => {
-                console.log('The products are ' + JSON.stringify(product));
+                //console.log('The products are ' + JSON.stringify(product));
                 setProduct(product);
                 setLoading(false);
             })
@@ -107,7 +107,7 @@ export default function AdminAccount() {
                 return response.json();
             })
             .then((data) => {
-                console.log('Your account has been updated' + JSON.stringify(data));
+                //console.log('Your account has been updated' + JSON.stringify(data));
                 setData(data);
                 setLoading(false);
                 alert('Your account has been updated, thank you!');
@@ -139,7 +139,7 @@ export default function AdminAccount() {
             })
             .then((response) => response.json())
             .then((product) => {
-                console.log('The products has been deleted');
+                //console.log('The products has been deleted');
                 setProduct(product);
                 setLoading(false);
                 alert('The product has been deleted.');

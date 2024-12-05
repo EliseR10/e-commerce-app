@@ -27,7 +27,7 @@ export default function Home() {
         
             .then(response => response.json())
             .then ((product) => {
-                console.log('The products are ' + JSON.stringify(product));
+                //console.log('The products are ' + JSON.stringify(product));
                 setProduct(product);
                 setLoading(false);
             })
@@ -55,7 +55,7 @@ export default function Home() {
                 })
                 .then((response) => response.json())
                 .then((product) => {
-                    console.log('The cart include: ' + JSON.stringify (product));
+                    //console.log('The cart include: ' + JSON.stringify (product));
                     setCart(product);
                     alert('Product successfully added to cart'); //Showing up in Firefox but not showing the message. Chrome ok
                 })
@@ -113,5 +113,5 @@ export default function Home() {
         </Container>
     );
 
-    
-}
+   
+};

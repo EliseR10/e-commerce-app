@@ -55,7 +55,7 @@ app.get('/account', (req, res) => {
         const { role_id } = req.user;
         
         if (role_id === 2) {
-            console.log('Displaying admin account');
+            //console.log('Displaying admin account');
             res.redirect('./src/adminAccount');
         } else {
             res.redirect('./src/account');
@@ -93,7 +93,7 @@ app.get('/account', (req, res) => {
                 message: `Product ${action} to the database`,
                 product: result.rows[0]
             });
-            console.log(`Product ${action}:`, result.rows[0]);
+            //console.log(`Product ${action}:`, result.rows[0]);
 
         } catch (err) {
             console.error('Error adding or updating this product', err);
@@ -106,7 +106,7 @@ app.get('/account', (req, res) => {
         try {
             const result = await pool.query('SELECT id, name, description, price FROM product');
             res.json(result.rows);
-            console.log(result.rows);
+            //console.log(result.rows);
         } catch (err) {
             console.error('Error retrieving products', err);
             res.status(500).send('Server error');
@@ -120,7 +120,7 @@ app.get('/account', (req, res) => {
         try {
             const result = await pool.query(`SELECT id, name, description, price FROM product WHERE id = $1`, [id]);
             res.json(result.rows);
-            console.log(result.rows);
+            //console.log(result.rows);
         } catch (err) {
             console.error('Error retrieving products', err);
             res.status(500).send('Server error');
@@ -216,7 +216,8 @@ app.get('/account', (req, res) => {
         const { customers_id, product_id } = req.params;
         const { quantity } = req.body;
 
-        console.log(`Updating cart for customer ${customers_id}, product ${product_id}, with quantity ${quantity}`);
+        //console.log(`Updating cart for customer ${customers_id}, product ${product_id}, with quantity ${quantity}`);
+        
         try {
             const query = `
                 UPDATE cart
@@ -341,7 +342,7 @@ app.get('/account', (req, res) => {
                     [id] //pass in the id as the value of $1
                 );
                 res.json(result.rows);
-                console.log(result.rows);
+                //console.log(result.rows);
         } catch (err) {
             console.error('Error retrieving the account data', err);
             res.status(500).send('Server error');
@@ -478,7 +479,7 @@ app.get('/account', (req, res) => {
 
             const result = await pool.query(query, [customers_id]);
             res.json(result.rows);
-            console.log(result.rows);
+            //console.log(result.rows);
 
         } catch (err) {
             console.error('Error retrieving orders', err);
@@ -568,7 +569,7 @@ app.get('/account', (req, res) => {
             const result = await pool.query(query, [quantity, customers_id]);
 
             res.json({ message: 'Your order was amended', order_items: result.rows[0] });
-            console.log(result.rows[0]);
+            //console.log(result.rows[0]);
 
         } catch (err) {
             console.error('Error updating this order', err);

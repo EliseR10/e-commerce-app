@@ -44,7 +44,7 @@ export default function AddProduct() {
             .then((response) => response.json())
             
             .then((product) => {
-                console.log('The new product has been added ' + JSON.stringify(product));
+                //console.log('The new product has been added ' + JSON.stringify(product));
                 setProduct(product);
                 alert('The new product has been added!');
             })
