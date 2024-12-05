@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
 import {Link, useLocation} from "react-router-dom";
+import { AuthContext } from './AuthContext';
 
 export default function Home() {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState([]);
     const location = useLocation(); //detect route changes
+    const {user} = useContext(AuthContext);
+    const { customers_id } = user;
 
         /*Display product */
         useEffect(() => {
@@ -37,11 +40,11 @@ export default function Home() {
 
         const addToCart = (product_id, quantity) => {
             try {
-                fetch(`http://localhost:4000/cart/:customers_id`, {
+                fetch(`http://localhost:4000/cart/${customers_id}`, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify({ 
-                        customers_id: 1, //send the dynamic information in the body to the BE
+                        customers_id: customers_id, //send the dynamic information in the body to the BE
                         product_id: product_id,
                         quantity: quantity, 
                     }),

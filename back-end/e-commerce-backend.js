@@ -150,7 +150,8 @@ app.use((req, res, next) => {
     /*CART API ENDPOINT*/
     /*Adding items to Cart. Front-end: by clicking on 'Add to Cart', passing product details*/
     app.post('/cart/:customers_id', async (req, res) => {
-        const { customers_id, product_id, quantity } = req.body;
+        const { customers_id } = req.params;
+        const { product_id, quantity } = req.body;
 
         try {
             const query = `
@@ -281,6 +282,9 @@ app.use((req, res, next) => {
                 return res.status(400).json({message: 'Account already exists'});
             }
 
+            //Start a transaction
+            await pool.query('BEGIN');
+
             /*Hash the password*/
             /*Here 10 is determining the number of hashing*/
             const saltRounds = 10;
@@ -289,11 +293,23 @@ app.use((req, res, next) => {
             const query = `
                 INSERT INTO account (customers_username, password, role_id)
                 VALUES ($1, $2, 1)
-                RETURNING customers_id, customers_username;
+                RETURNING customers_id, customers_username, id;
             `;
 
             const result = await pool.query(query, [customers_username, hashedPassword]);
             const newUser = result.rows[0];
+
+            //save in a const the data needed to insert into customers table
+            const customers_id = result.rows[0].customers_id;
+            const account_id = result.rows[0].id;
+
+            const customersQuery = `
+                INSERT INTO customers (id, username, account_id)
+                VALUES ($1, $2, $3)
+            `;
+            await pool.query(customersQuery, [customers_id, customers_username, account_id]);
+
+            await pool.query('COMMIT'); //commit transaction
 
             /*Log the user in after account is created*/
             if (newUser) {
@@ -315,8 +331,12 @@ app.use((req, res, next) => {
 
     /*Display account details*/
     app.get('/account/:id', async (req, res) => {
+        const {id} = req.params;
+
         try {
-                const result = await pool.query('SELECT id, customers_username, customers_phone_number, password FROM account');
+                const result = await pool.query('SELECT id, customers_username, customers_phone_number FROM account WHERE id=$1',
+                    [id] //pass in the id as the value of $1
+                );
                 res.json(result.rows);
                 console.log(result.rows);
         } catch (err) {
@@ -342,8 +362,11 @@ app.use((req, res, next) => {
             }
 
             if (password) {
-                setClauses.push(`password = $${values.length + 1}`); 
-                values.push(password);
+                setClauses.push(`password = $${values.length + 1}`);
+                /*Hash the password*/
+                const saltRounds = 10; /*Here 10 is determining the number of hashing*/
+                const hashedPassword = await bcrypt.hash(password, saltRounds); 
+                values.push(hashedPassword);
             }
 
             //If no field provided, return an error
@@ -369,11 +392,29 @@ app.use((req, res, next) => {
                 return res.status(400).json({ message: 'Account not found'});
             }
 
+            if (customers_phone_number) {
+                const customersQuery = `
+                    UPDATE customers
+                    SET phone_number = $1
+                    WHERE id = (SELECT customers_id FROM account WHERE id = $2)
+                    RETURNING *;
+                `;
+
+                const customersValues = [customers_phone_number, id];
+                const customersResult = await pool.query(customersQuery, customersValues);
+
+                if (customersResult.rows.length === 0) {
+                    console.log('No matching customer found to update');
+                } else {
+                    console.log('Customer updated successfully: ', customersResult.rows[0]);
+                }
+            }
+
             res.json({ message: 'Account updated successfully', account: result.rows[0] });
             
         } catch (err) {
             console.error('Error updating the account', err);
-            res.status(500).send('Server error', err);
+            res.status(500).json({error: err.message});
         };
     });
     

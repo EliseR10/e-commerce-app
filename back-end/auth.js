@@ -17,7 +17,20 @@ router.post('/login', (req, res, next) => {
 
     req.logIn(user, (err) => {
         if (err) return next(err);
-        return res.json({success: true, message: 'Login successful'});
+
+        //extract relevant data from the user object
+        const {customers_id, id, role_id} = user;
+
+        return res.json({
+            success: true, 
+            message: 'Login successful', 
+            isAuthenticated: true,
+            user: {
+                customers_id, 
+                id, 
+                role_id
+            }
+        });
     });
     })(req, res, next); //call the function
 });

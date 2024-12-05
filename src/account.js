@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
 import {Link, useLocation} from "react-router-dom";
+import { AuthContext } from './AuthContext';
 
 //To import icons from FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,8 +14,10 @@ export default function Account() {
     const [order, setOrder] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation(); //detect route changes
+    const {user} = useContext(AuthContext);
+    const { customers_id, id} = user;
 
-    useEffect((id) => {
+    useEffect(() => {
         try {
             /*Fetch to display account data*/
             fetch(`http://localhost:4000/account/${id}`, {
@@ -33,7 +36,7 @@ export default function Account() {
             })
 
             /*Fetch to display previous order*/
-            fetch(`http://localhost:4000/orders/${id}`, {
+            fetch(`http://localhost:4000/orders/${customers_id}`, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -72,7 +75,7 @@ export default function Account() {
 
     /*Here, fetch api endpoint of updateAccount + api endpoint of display 
     account to have the same as cart: update and display the updates*/
-    const updateAccount = (id) => {
+    const updateAccount = () => {
         try {
             fetch(`http://localhost:4000/account/${id}`, {
                 method: 'PUT',
@@ -129,7 +132,7 @@ export default function Account() {
             })
             .then((response) => response.json())
             .then(() => {
-                return fetch(`http://localhost:4000/orders/1`, {
+                return fetch(`http://localhost:4000/orders/${id}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -154,9 +157,9 @@ export default function Account() {
         }
     }
 
-    const deleteAccount = (id) => {
+    const deleteAccount = () => {
         try {
-            fetch(`http://localhost:4000/account/2`, {
+            fetch(`http://localhost:4000/account/${id}`, {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: {
@@ -211,7 +214,7 @@ export default function Account() {
                     
                     <label id="passwordInput">Password</label>
                     <br></br>
-                    <input className="input" type="password" name="password" defaultValue={data[0].password} onChange={handleChange}></input>
+                    <input className="input" type="password" name="password" onChange={handleChange}></input>
                     <br></br>
                     <Button className="btn1" variant="light" onClick={() => updateAccount(data.id)}>Save</Button>
 

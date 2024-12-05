@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
 import {Link, useLocation} from "react-router-dom";
+import { AuthContext } from './AuthContext';
 
 //To import icons from FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +14,13 @@ export default function AdminAccount() {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation(); //detect route changes
+    const {user} = useContext(AuthContext);
+    const {id} = user;
 
     useEffect(() => {
         try {
             /*Fetch to display account data*/
-            fetch('http://localhost:4000/account/:id', {
+            fetch(`http://localhost:4000/account/${id}`, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -68,9 +71,9 @@ export default function AdminAccount() {
 
     /*Here, fetch api endpoint of updateAccount + api endpoint of display 
     account to have the same as cart: update and display the updates*/
-    const updateAdminAccount = (id) => {
+    const updateAdminAccount = () => {
         try {
-            fetch(`http://localhost:4000/account/2`, {
+            fetch(`http://localhost:4000/account/${id}`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: JSON.stringify({
@@ -184,7 +187,7 @@ export default function AdminAccount() {
                     
                     <label id="passwordInput">Password</label>
                     <br></br>
-                    <input className="input" type="password" defaultValue={data[0].password} onChange={handleChange}></input>
+                    <input className="input" type="password" onChange={handleChange}></input>
                     <br></br>
                     <Button className="btn1" variant="light" onClick={() => updateAdminAccount(data.id)}>Save</Button>
                 </div>

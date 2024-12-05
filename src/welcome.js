@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form, Container} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from './AuthContext';
 
 export default function Welcome() {
     const [input, setInput] = useState([]);
-    //const [register, setRegister] = useState([]);
-    //const [isRegistered, setIsRegistered] = useState(false); //track submission success
     const navigate = useNavigate();
+    //Access setIsAuthenticated and setUser from context
+    const { setIsAuthenticated, setUser } = useContext(AuthContext); 
 
     const handleChange = (event) => {
         const {name, value} = event.target; //extract name and value from the input
@@ -45,7 +46,9 @@ export default function Welcome() {
             console.log(data);
             
             if (data.success) {
-                //navigate('/home');
+                setIsAuthenticated(true);
+                setUser(data.user);
+                navigate('/home');
                 console.log('Logged in successfully.');
             } else {
                 console.log('Login failed: ', data.message || 'Unknown error');
@@ -78,11 +81,13 @@ export default function Welcome() {
             })
             
             const data = await response.json();
-            console.log('Login response:', data);
+            console.log('Register response:', data);
 
             if (data.success) {
-                console.log('Registered successfully.');
+                setIsAuthenticated(true);
+                setUser(data.user);
                 navigate('/home');
+                console.log('Registered successfully.');
             } else {
                 console.log('Registration failed: ', data.message || 'Unknown error');
                 alert(`Registration failed: ${data.message || 'Unknown error'}`);

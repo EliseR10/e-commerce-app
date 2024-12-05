@@ -1,14 +1,4 @@
-DELETE FROM account
-WHERE id = 17;
-
-DELETE FROM account
-WHERE id = 18;
-
-DELETE FROM account
-WHERE id = 19;
-
-DELETE FROM account
-WHERE id = 20;
-
-DELETE FROM account
-WHERE id = 21;
+ALTER TABLE orders
+ADD CONSTRAINT orders_customers_id_fkey
+FOREIGN KEY (customers_id) REFERENCES account(customers_id)
+ON DELETE CASCADE;

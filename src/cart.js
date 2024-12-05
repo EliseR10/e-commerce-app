@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button, Dropdown, DropdownMenu} from 'react-bootstrap';
 import {Link, useNavigate} from "react-router-dom";
+import { AuthContext } from './AuthContext';
 
 //To import icons from FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,11 +13,13 @@ export default function Cart() {
     const [displayCart, setDisplayCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
+    const { customers_id } = user;
 
     /*Display cart*/
     useEffect(() => {
         try {
-            fetch('http://localhost:4000/cart/1', {
+            fetch(`http://localhost:4000/cart/${customers_id}`, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -57,7 +60,7 @@ export default function Cart() {
             })
             .then((response) => response.json())
             .then (() => {
-                return fetch('http://localhost:4000/cart/1', {
+                return fetch(`http://localhost:4000/cart/${customers_id}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -89,7 +92,7 @@ export default function Cart() {
             })
             .then((response) => response.json())
             .then (() => {
-                return fetch('http://localhost:4000/cart/1', {
+                return fetch(`http://localhost:4000/cart/${customers_id}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -111,7 +114,7 @@ export default function Cart() {
 
     const Order = () => {
         try {
-                fetch('http://localhost:4000/orders/1', {
+                fetch(`http://localhost:4000/orders/${customers_id}`, {
                     method: 'POST',
                     credentials: 'include',
                     headers: {
