@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import { AuthContext } from './AuthContext';
 
 export default function Home() {
@@ -12,6 +12,7 @@ export default function Home() {
     const location = useLocation(); //detect route changes
     const {user} = useContext(AuthContext);
     const { customers_id } = user;
+    const navigate = useNavigate();
 
         /*Display product */
         useEffect(() => {
@@ -62,6 +63,14 @@ export default function Home() {
                 console.log('Error adding to cart ', err);
             }
         };
+
+        const redirectAccount = () => {
+            if (user && user.role_id === 2) {
+                navigate('/adminAccount');
+            } else {
+                navigate('/account');
+            }
+        }
         
     return (
         <Container className="homePage">
@@ -71,7 +80,7 @@ export default function Home() {
                 </div>
 
                 <Link to="/cart"><Button variant="light" className="cart">Cart</Button></Link>
-                <Link to="/account"><Button variant="light" className="account">Account</Button></Link>
+                <Button variant="light" className="account" onClick={redirectAccount}>Account</Button>
             </div>
 
             <div className="offer">

@@ -44,21 +44,24 @@ app.use(passport.session());
 /*Use authentication routes*/
 app.use('/auth', authRoutes);
 
-/*Middleware to protect all other routes
-app.use((req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    console.log('Not authenticated');
-    res.redirect('/login');
-});*/
-
 /*Check what req.isAuthenticated() returns for the failing request*/
 app.use((req, res, next) => {
     console.log('Is authenticated: ', req.isAuthenticated());
     next();
 });
 
+app.get('/account', (req, res) => {
+    if (req.isAuthenticated()) {
+        const { role_id } = req.user;
+        
+        if (role_id === 2) {
+            console.log('Displaying admin account');
+            res.redirect('./src/adminAccount');
+        } else {
+            res.redirect('./src/account');
+        }
+    }
+})
 
 /*Writing routes*/
     /*PRODUCT DATA API ENDPOINT*/

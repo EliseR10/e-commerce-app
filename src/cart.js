@@ -131,6 +131,14 @@ export default function Cart() {
         }
     }
 
+    const redirectAccount = () => {
+        if (user && user.role_id === 2) {
+            navigate('/adminAccount');
+        } else {
+            navigate('/account');
+        }
+    }
+
     return (
         <Container className="cartPage">
             <div className="header">
@@ -138,7 +146,7 @@ export default function Cart() {
                     <Link to="/home"><h3 id="titleCart">The Learning App</h3></Link>
                 </div>
 
-                <Link to="/account"><Button variant="light" className="account">Account</Button></Link>
+                <Button variant="light" className="account" onClick={redirectAccount}>Account</Button>
             </div>
 
             {console.log('The array contains: ', displayCart)}
