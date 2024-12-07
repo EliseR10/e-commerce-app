@@ -55,7 +55,7 @@ describe('add to cart button', () => {
     /*Mock the POST request for adding to the cart*/
     fetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve(mockCart), //return array as cart expects one
+        json: () => Promise.resolve(mockCart),
     });
 
     window.alert = jest.fn(); //Mock the alert function

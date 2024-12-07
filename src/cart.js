@@ -47,7 +47,7 @@ export default function Cart() {
         results if dealing with different numeral systems*/
         try {
         
-            fetch(`http://localhost:4000/cart/1/${product_id}`, {
+            fetch(`http://localhost:4000/cart/${customers_id}/${product_id}`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: JSON.stringify({
@@ -83,7 +83,7 @@ export default function Cart() {
 
     const deleteCart = (product_id) => {
         try {
-            fetch(`http://localhost:4000/cart/1/${product_id}`, {
+            fetch(`http://localhost:4000/cart/${customers_id}/${product_id}`, {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: {
