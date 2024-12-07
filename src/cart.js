@@ -123,7 +123,8 @@ export default function Cart() {
                 })
                 .then((response) => response.json())
                 .then(data => {
-                    console.log('Order created:', data);               
+                    console.log('Order created:', data);
+                    navigate('/thankYou');               
                 })
         } catch(err) {
             console.error('Error putting through the order ' + err);
@@ -188,7 +189,7 @@ export default function Cart() {
                             <h4>Total amount to pay: £ {displayCart.totalCartValue}</h4>
                         </div>
                         <div className="orderNow">
-                            <Link to="/thankYou"><Button variant="light" className="orderNowBtn" onClick={() => Order()}>ORDER NOW!</Button></Link>
+                            <Button variant="light" className="orderNowBtn" onClick={() => Order()}>ORDER NOW!</Button>
                         </div>
                         </>
                     ) : (
