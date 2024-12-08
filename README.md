@@ -1,7 +1,10 @@
 # E-commerce Website (computer and mobile version)
-I made an e-commerce website that is selling online courses as a personal project. To use the website, you need to register or login. You will have a choice of courses that you can add to cart. If you go to the cart, you can either change the quantity of product, delete a product or order it. 
+I made an e-commerce website that is selling online courses as a personal project. 
+
+To use the website, you need to register or login. You will have a choice of courses that you can add to cart. If you go to the cart, you can either change the quantity of product, delete a product or order it. 
 In your account, you can display your account information, update them, view your previous order and delete them or delete your account.
 If you have an admin account, you will be able to update your details, view your product on sales and modify, delete or add a product. From there, you can log out.
+
 I used JavaScript(React) for the front-end, Node.js (Express) for the back-end and PostgresSQL for the database.
 
 I used Passport for the authentication with session and Jest to test the app. 
