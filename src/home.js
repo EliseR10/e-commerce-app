@@ -93,9 +93,9 @@ export default function Home() {
                 {product.map((item) => (
                 <div className="Spanish" key={item.product_id}>
                     <div className="SpanishTitle">
-                        <h4>{item.name}</h4>
+                        <h4 style= {{'background-color': '#F2DADA'}}>{item.name}</h4>
                         <h6>{item.description} <br></br></h6>
-                        <h6>£{item.price}</h6>
+                        <h6><strong>£{item.price}</strong></h6>
                     </div>
                     <div className="CartBtn">
                         <Button variant="light" onClick={() => addToCart(item.id, 1)}>Add to Cart</Button>

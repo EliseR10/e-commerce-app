@@ -81,7 +81,7 @@
 
 .SpanishTitle {
   border: 1px solid black;
-  background-color: #E7E4E4;
+  background-color: white;
   padding-left: 5px;
   justify-content: center;
 }
@@ -505,4 +505,49 @@ button.validateProductBtn:hover {
 
 #addAProductBtn {
   font-size: 15px;
+}
+
+
+/*COMPUTER VERSION*/
+@media only screen and (min-width: 900px) {
+  /*Home Page*/
+  #titleHome {
+    color: white;
+    font-size: 30px;
+    margin-right: 800px;
+    margin-top: 10px;
+  }
+  
+  .header {
+    display: flex;
+  }
+  
+  .cart {
+    height: 45px;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+  
+  .account {
+    height: 45px;
+    margin-top: 20px;
+  }
+
+  /*Cart Page*/
+  #titleCart {
+    color: white;
+    font-size: 30px;
+    margin-right: 800px;
+    margin-top: 10px;
+  }
+
+  .orderNow {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .orderNowBtn {
+    width: 50%;
+  }
 }
