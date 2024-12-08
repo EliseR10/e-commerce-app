@@ -9,14 +9,6 @@ I used JavaScript(React) for the front-end, Node.js (Express) for the back-end a
 
 I used Passport for the authentication with session and Jest to test the app. 
 
-Mobile version:
-<img src="https://1drv.ms/i/s!AkB-sj4-HDI7rh1Pct7nvTSlz3hb?embed=1&width=1081&height=2404" width="500" height="300">
-<img src="https://1drv.ms/i/s!AkB-sj4-HDI7rhrmz8YQHJxzPw62?embed=1&width=2880&height=1800" width="500" height="300">
-
-Computer version:
-<img src="https://1drv.ms/i/s!AkB-sj4-HDI7rh1Pct7nvTSlz3hb?embed=1&width=1081&height=2404" width="500" height="300">
-<img src="https://1drv.ms/i/s!AkB-sj4-HDI7rhztr-kp21mi3H57?embed=1&width=1081&height=2404" width="500" height="300">
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
