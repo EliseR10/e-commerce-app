@@ -133,7 +133,7 @@ export default function Account() {
             })
             .then((response) => response.json())
             .then(() => {
-                return fetch(`http://localhost:4000/orders/${id}`, {
+                return fetch(`http://localhost:4000/orders/${customers_id}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -232,7 +232,7 @@ export default function Account() {
                     <input className="input" type="tel" name="customers_phone_number" id="inputPhone" pattern="[0-9]{5}\s[0-9]{6}" title="Please enter a valid phone number in the format 12345 678987" defaultValue={data[0].customers_phone_number} onChange={handleChange}></input>
                     {/* \s is for the space in the phone number */}
                     <br></br>
-                    <Button className="btn1" variant="light" onClick={() => updateAccount(data.id)}>Save</Button>
+                    <Button className="btn1" variant="light" aria-label= "phoneSaveButton" onClick={() => updateAccount(data.id)}>Save</Button>
                     <br></br>
                     
                     <label id="passwordInput">Password</label>
